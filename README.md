@@ -5,3 +5,4 @@ CSCI 6363 Fall 2019 Group project of Astha, Austin, Colleen, & Josh
 Sign in and let us all know you're Cloning/Pushing/Pulling
 
 Josh Aiken @ 08/27-16:31
+Colleen Rooney @8/28-8:24pm
