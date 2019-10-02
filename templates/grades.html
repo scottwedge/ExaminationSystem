@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<script>
+	def create_connection(users):
+	    conn = None
+	    try:
+	        conn = sqlite3.connect(users)
+	    except Error as e:
+	        print(e)
+	 
+	    return conn
+
+
+	 def select_all_tasks(conn):
+	    cur = conn.cursor()
+	    cur.execute("SELECT asthasharma FROM users")
+	 
+	    rows = cur.fetchall()
+	 
+	    for row in rows:
+	        print(row)
+
+
+
+	def main():
+	    database = os.path.join(BASE_DIR, 'db.sqlite3')
+	 
+	    # create a database connection
+	    conn = create_connection(database)
+	    
+ 
+ 
+	if __name__ == '__main__':
+    	main()
+
+</script>
+<style>
+	.digit{
+	text-align: center;
+}
+</style>
+<div class ="table-responsive">
+<table class="table table-hover table-striped">
+	<thead>
+		<tr class="success">
+			<td >Courses</td>
+			 <td class="digit">Obtained Grades</td>
+		</tr>
+	</thead>
+	<tbody class="" >
+		<tr>
+			<td>Agile Software Engineering</td>
+			  <td class="digit">94.64</td>
+		</tr>
+		<tr>
+			<td>Machine Learning II</td>
+			  <td class="digit">90.25</td>
+		</tr>
+		<tr>
+			<td>Introduction to Computers</td>
+			  <td class="digit">100.00</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+
+{% endblock %}

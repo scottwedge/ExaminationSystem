@@ -1,0 +1,52 @@
+<!-- <div ng-controller="loginCtrl">
+	
+<h2 style="color: #349200"> Academic Examination System </h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+<div id="formFooter">
+  <a href="#"> New User? </a> | <a href="#" ng-click="resetPassword()">Forgot Password?</a>
+</div>
+-->
+{% load static %}
+<html lang="en" >
+<head>
+  <title>Academic Examination System</title>
+    <!-- Application Stylesheet -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+{%if messages%}
+  {%for message in messages%}
+    <div class="alert alert-{{message.tags}}">
+      {{message}}
+    </div>
+  {%endfor%}
+{%endif%}
+<body>
+  <!--
+    Your HTML content here
+  -->
+  <div class="jumbotron">
+      <div class="container-fluid">
+        <div class="col-xs-offset-2 col-xs-8">
+          <div>
+            <h2 style="color: #349200"> Academic Examination System </h2><br/>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+              </form>
+			<!-- Remind Passowrd or Create new account -->
+			<div id="formFooter">
+			    <a href="/register"> New User? </a> | <a href="#" onclick="resetPassword()">Forgot Password?</a>
+			</div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
+
