@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!--<link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
+<div class="container">
+  
+
+      <div class = "row">
+            <div class = "col-sm-8 col-md-4">
+               <div class = "thumbnail">
+                  <img src = "https://images.pexels.com/photos/34592/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 6522">
+               </div>
+               <div>
+                  <h3 class = "caption">6522 - Machine Learning II</h3>
+   
+                     <a href = "#" class = "btn btn-primary" role = "button">
+                        Take Test
+                     </a> 
+                     <a href = "#" class = "btn btn-default" role = "button">
+                        View Grades
+                     </a>
+                  
+               </div>
+           </div>
+   
+           <div class = "col-sm-8 col-md-4">
+              <div class = "thumbnail">
+                  <img src = "https://images.pexels.com/photos/301920/pexels-photo-301920.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 6363">
+               </div>
+               <div>
+                  <h3 class = "caption">6555 - Modern Database Management</h3>
+   
+                     <a href = "../ag" class = "btn btn-primary" role = "button">
+                        Take Test
+                     </a> 
+                     <a href = "/grades" class = "btn btn-default" role = "button">
+                        View Grades
+                     </a>
+                  
+               </div>
+           </div>
+   
+   
+           <div class = "col-sm-8 col-md-4">
+               <div class = "thumbnail">
+                  <img src = "https://images.pexels.com/photos/5711/books-colorful-book-5711.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 1000">
+               </div>
+               <div>
+                  <h3 class="caption" >1000 - Introduction to Computers</h3>
+   
+                     <a href = "#" class = "btn btn-primary" role = "button">
+                        Take Test
+                     </a> 
+                     <a href = "#" class = "btn btn-default" role = "button">
+                        View Grades
+                     </a>
+                  
+               </div>
+           </div>
+       </div>
+   
+   
+   
+   </div>
+
+
+
+
+
+<script>
+// Add active class to the current button (highlight it)
+	var header = document.getElementById("navigation");
+	var btns = header.getElementsByClassName("bt");
+	for (var i = 0; i < btns.length; i++) {
+	  btns[i].addEventListener("click", function() {
+	  var current = document.getElementsByClassName("active");
+	  current[0].className = current[0].className.replace("active", "");
+	  this.className += " active";
+	  });
+	}
+</script>
+
+
+
+{% endblock %}

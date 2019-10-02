@@ -1,0 +1,41 @@
+<h3 style="color:#349200"> Hello, {{ request.user }}! </h3>
+<p align="right"><a class ="ml-2" href="{% url 'logout' %}"> Log Out </a></p>
+
+<nav class="navbar navbar-default">
+	<div id = "navigation">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Academic Examination System</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="bt"><a href="../homepage">Courses</a></li>
+	      <li  class="bt"><a href="../profile">Profile</a></li>
+	      <li class="bt"><a href="../grades">Grades</a></li>
+	      
+
+		  <li class="dropdown">
+      		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Take Test <span class="caret"></span></a>
+      		<ul class="dropdown-menu">
+        		<li><a href="../ag">Modern Database Management</a></li>
+        		<li><a href="#">Machine Learning II</a></li>
+        		<li><a href="#">Introduction to Computers</a></li>                        
+      		</ul>
+    	</li>
+
+	    </ul>
+	  </div>
+	</div>
+</nav>
+
+<script>
+// Add active class to the current button (highlight it)
+	var header = document.getElementById("navigation");
+	var btns = header.getElementsByClassName("bt");
+	for (var i = 0; i < btns.length; i++) {
+	  btns[i].addEventListener("click", function() {
+	  var current = document.getElementsByClassName("active");
+	  current[0].className = current[0].className.replace("active", "");
+	  this.className += " active";
+	  });
+	}
+</script>
