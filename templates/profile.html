@@ -1,12 +1,14 @@
-
 {% extends 'base.html' %}
 
 {% load static %}
 {% block content %}
 
-	<h3> My profile </h3>
-	<p> Username : {{request.user}} </p>
-	<p> Email : {{request.email}} </p>
+	<h3> My Profile </h3>
+	<p> Username : {{user.username}} </p>
+	<p> Email : {{user.email}} </p>
+	<p> Image : <img src={{user.profile.image.url}} ></img> </p> <!--@ profile_pics/pic.jpg-->
+	<p> Role : {{user.profile.role}} </p>
+
 
 
 <form>
