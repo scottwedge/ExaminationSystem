@@ -25,7 +25,7 @@ SECRET_KEY = '3743tmo_(g57qlz^3tb#lqtf)!%a)i%7f+(a7%ry6a!1evz9^v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.245.95.57', 'localhost', 'pirateschool.net']
+ALLOWED_HOSTS = ['157.245.95.57', 'localhost', 'pirateschool.net', '127.0.0.1']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #Our Apps
     'login',
     'homepage',
+    'user', #!!!MANUALLY EDIT ON GIT
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ WSGI_APPLICATION = 'djProject.wsgi.application'
 
 DATABASES = {
     'default': {
+# Comment this out to work on local
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'agiledb',
         'USER': 'agile',
@@ -86,8 +88,13 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '',
     }
-}
 
+#Comment this out before you push to our live server or so help me
+#you won't live to see another sunrise
+#    'ENGINE': 'django.db.backends.sqlite3',
+#    'NAME': 'mydatabase',
+#    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -127,6 +134,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # my_project/settings.py
 LOGIN_REDIRECT_URL = '/homepage'

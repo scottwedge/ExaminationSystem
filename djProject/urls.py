@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
 from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test
 from login.views import login_view, register_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     #Admin View
@@ -33,4 +35,4 @@ urlpatterns = [
     path('profile/', profile_view),
     path('grades/', grades_view),
     path('ag/', agile_test),
-]
+] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
