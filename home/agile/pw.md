@@ -1,8 +1,0 @@
-DJANGO_USER=django
-DJANGO_USER_PASSWORD=f73a12490dd4b0fe1ac2f283bbaf8aa7
-SETTINGS_FILE=/home/django/django_project/django_project/settings.py
-DJANGO_POSTGRESS_PASS=642d751ac4cb70f6f30496021761ebee
-DJANGO_SECRET_KEY=3e5543f644b8c5519f753406fac047af
-SECRET_KEY=0fc6d7e56628475d9a060ece524ffa5a
-
-Post apocalyptic scavengers!
