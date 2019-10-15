@@ -1,5 +1,5 @@
 from django.db import models
-#from course.models import Course
+from course.models import Course
 
 # Create your models here.
 class Question(models.Model):
@@ -7,12 +7,13 @@ class Question(models.Model):
     
     ##THIS IS WHERE THE WORK BEGINS
     #this is a guess...
- #   course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
 
 
     #chapter 
     #question_text
-    #one-to-one 
+    #one-to-one mkmigr
+    
     
     
     #num_answers

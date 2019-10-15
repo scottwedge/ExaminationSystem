@@ -84,20 +84,20 @@ WSGI_APPLICATION = 'djProject.wsgi.application'
 DATABASES = {
     'default': {
 # Comment this out to work on local
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'agiledb',
-#        'USER': 'agile',
-#        'PASSWORD': 'butt',
-#        'HOST': 'localhost',
-#        'PORT': '',
-#    }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'agiledb',
+        'USER': 'agile',
+        'PASSWORD': 'butt',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 
 #Comment this out before you push to our live server or so help me
 #you won't live to see another sunrise
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': 'mydatabase',
-    }
-}
+#    'ENGINE': 'django.db.backends.sqlite3',
+#    'NAME': 'mydatabase',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
