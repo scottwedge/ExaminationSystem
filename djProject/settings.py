@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     #Our Apps
     'login',
     'homepage',
-    'user', #!!!MANUALLY EDIT ON GIT
+    'user', 
+    'course',
+    'examination',
+    #!!!MANUALLY EDIT ON GIT
 ]
 
 MIDDLEWARE = [
