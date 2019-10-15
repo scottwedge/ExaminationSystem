@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
-from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test
+from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view
 from login.views import login_view, register_view
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,6 +33,7 @@ urlpatterns = [
     #Homepage Views
     path('homepage/', student_view, name='student_logged_in'),
     path('profile/', profile_view),
+    path('changeprofile/', changeprofile_view, name='changeprofile'),
     path('grades/', grades_view),
     path('ag/', agile_test),
 ] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -5,14 +5,18 @@
 
 	<h3> My Profile </h3>
 	<p> Username : {{user.username}} </p>
+	<p> Name : {{user.first_name}} {{user.last_name}}  </p>
 	<p> Email : {{user.email}} </p>
 	<p> Image : <img src={{user.profile.image.url}} ></img> </p> <!--@ profile_pics/pic.jpg-->
-	<p> Role : {{user.profile.role}} </p>
+	<p> User Role : {{user.profile.role}} </p>
+	<p> Country : {{user.profile.country}} </p>
+	<p> State : {{user.profile.state}} </p>
+	<p> City/Town : {{user.profile.city}} </p>
+	<p> Last Login : {{user.last_login}} </p>
+	<p> Date Account Created : {{user.date_joined}} </p>
 
 
-
-<form>
-	
-</form>
+	<a class ="ml-2" href="{% url 'changeprofile' %}"> Update Profile </a>
+		
 
 {% endblock %}

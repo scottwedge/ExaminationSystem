@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.contrib.auth.models import User, Group
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm 
+from user.forms import ProfileUpdateForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 #All things related to user logging in. Login, Account Creation, ect.

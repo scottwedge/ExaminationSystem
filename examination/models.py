@@ -7,7 +7,7 @@ class Question(models.Model):
     
     ##THIS IS WHERE THE WORK BEGINS
     #this is a guess...
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    #course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 
     #chapter 
@@ -23,5 +23,5 @@ class Question(models.Model):
     #answer_4
     #answer_5
 
-    def __str__(self):
-        return f'{self.dummy, self.course}'
+    #def __str__(self):
+     #   return f'{self.dummy, self.course}'
