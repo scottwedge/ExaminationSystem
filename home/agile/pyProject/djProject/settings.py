@@ -98,7 +98,7 @@ DATABASES = {
 #    'NAME': 'mydatabase',
 #    }
 
-#Don't Comment Me!
+#Don't comment me!
 }
 
 # Password validation
