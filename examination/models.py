@@ -1,13 +1,13 @@
 from django.db import models
-from course.models import Course
+#from course.models import Course
 
 # Create your models here.
 class Question(models.Model):
-    dummy = models.CharField(default='dummy value', max_length=50)
+    dummy = models.CharField(default=None, max_length=50)
     
     ##THIS IS WHERE THE WORK BEGINS
     #this is a guess...
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+ #   course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
 
 
     #chapter 
@@ -24,4 +24,5 @@ class Question(models.Model):
     #answer_5
 
     def __str__(self):
-        return f'{self.dummy, self.course}'
+        return f'{self.dummy}'
+        #,self.course
