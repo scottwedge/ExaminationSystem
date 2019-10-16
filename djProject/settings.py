@@ -94,11 +94,9 @@ DATABASES = {
 
 #Comment this out before you push to our live server or so help me
 #you won't live to see another sunrise
-#    'ENGINE': 'django.db.backends.sqlite3',
-#    'NAME': 'mydatabase',
-#    }
-
-#Don't Comment Me!
+    #'ENGINE': 'django.db.backends.sqlite3',
+    #'NAME': 'mydatabase',
+    #}
 }
 
 # Password validation
