@@ -4,6 +4,7 @@ from course.models import Course
 # Create your models here.
 class Question(models.Model):
     dummy = models.CharField(default=None, max_length=50)
+    field2 = models.CharField(default=None, max_length=50)
     
     ##THIS IS WHERE THE WORK BEGINS
     #this is a guess...
@@ -26,4 +27,4 @@ class Question(models.Model):
 
     def __str__(self):
         return f'{self.dummy}'
-        #,self.course
+,self.course
