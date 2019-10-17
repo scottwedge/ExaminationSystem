@@ -12,7 +12,7 @@ def gitlab(request):
     event = request.META.get('HTTP_X_GITLAB_EVENT', 'ping')
 
     if event == 'ping':
-        return HttpResponse('pong')
+        return HttpResponse('pongify')
     elif event == 'push':
         # Do something...
         #HERE IS WHERE WE CALL THE pull/migrate commands
