@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'user', 
     'course',
     'examination',
+    'hooks',
     #!!!MANUALLY EDIT ON GIT
 ]
 

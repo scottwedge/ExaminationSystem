@@ -20,6 +20,7 @@ from homepage.views import student_view, logout_view, profile_view, grades_view,
 from login.views import login_view, register_view
 from django.conf import settings
 from django.conf.urls.static import static
+from hooks.views import gitlab
 
 urlpatterns = [
     #Admin View
@@ -36,4 +37,8 @@ urlpatterns = [
     path('changeprofile/', changeprofile_view, name='changeprofile'),
     path('grades/', grades_view),
     path('ag/', agile_test),
+
+    #Webhooks
+    path('hooks/', gitlab),
+
 ] + static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
