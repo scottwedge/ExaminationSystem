@@ -3,9 +3,6 @@
 {% load static %}
 {% block content %}
 
-
-
-
 	<style>
 		.card {
 		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -73,9 +70,19 @@
 			<div class="card-body">
 				<span class="badge">{{user.profile.role}}</span>
 			  <h3 class="card-title">{{user.username}}</h3>
+			  <p> Name : {{user.first_name}} {{user.last_name}}  </p>
+			  <p> Username : {{user.username}} </p>
+			  <p> Name : {{user.first_name}} {{user.last_name}}  </p>
+			  <p> Image : <img src={{user.profile.image.url}} ></img> </p> <!--@ profile_pics/pic.jpg-->
+
+			  <p> Country : {{user.profile.country}} </p>
+			  <p> State : {{user.profile.state}} </p>
+			  <p> City/Town : {{user.profile.city}} </p>
+			  <p> Last Login : {{user.last_login}} </p>
+			  <p> Date Account Created : {{user.date_joined}} </p>
 			  <h5>{{user.email}} </h5>
 			  <h5>Some breif description about the user.</h5>
-			  <a href="#" class="b">Update Profile</a>
+			  <a class ="ml-2" href="{% url 'changeprofile' %}"> Update Profile </a>
 			</div>
 		  </div>
 
