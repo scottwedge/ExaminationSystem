@@ -25,7 +25,7 @@ SECRET_KEY = '3743tmo_(g57qlz^3tb#lqtf)!%a)i%7f+(a7%ry6a!1evz9^v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.245.95.57', 'localhost', 'pirateschool.net', '127.0.0.1', '03d0438a.ngrok.io']
+ALLOWED_HOSTS = ['157.245.95.57', 'localhost', 'pirateschool.net', '127.0.0.1']
 
 
 # Application definition
@@ -85,19 +85,19 @@ WSGI_APPLICATION = 'djProject.wsgi.application'
 DATABASES = {
     'default': {
 # Comment this out to work on local
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 'agiledb',
-        #'USER': 'agile',
-        #'PASSWORD': 'butt',
-        #'HOST': 'localhost',
-        #'PORT': '',
-    #}
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'agiledb',
+        'USER': 'agile',
+        'PASSWORD': 'butt',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 
 #Comment this out before you push to our live server or so help me
 #you won't live to see another sunrise
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': 'mydatabase',
-    }
+#    'ENGINE': 'django.db.backends.sqlite3',
+#    'NAME': 'mydatabase',
+#    }
 }
 
 # Password validation
