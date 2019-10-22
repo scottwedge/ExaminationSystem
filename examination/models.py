@@ -1,5 +1,7 @@
 from django.db import models
 from course.models import Course
+import logging
+logger = logging.getLogger(__name__)
 
 # Create your models here.
 class Question(models.Model):
@@ -8,6 +10,7 @@ class Question(models.Model):
     ##THIS IS WHERE THE WORK BEGINS
     #this is a guess...
     course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
+    logger.info('Examination Models touched')
 
 
     #chapter 
