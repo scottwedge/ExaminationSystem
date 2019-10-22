@@ -5,12 +5,16 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from login.forms import UserUpdateForm
 from user.forms import ProfileUpdateForm
+from user.models import Profile
 # Create your views here.
 
 @login_required
 def student_view(request, *args, **kwargs):
 	#return HttpResponse("<h1> Welcome Student</h1>")
-		return render(request, "student_logged_in.html", { })
+    if request.user.profile.role == 'S':
+	    return render(request, "student_logged_in.html", { })
+    else:
+        return HttpResponse("<h1> Welcome TEACHER</h1>")
 	
 
 def logout_view(request):
