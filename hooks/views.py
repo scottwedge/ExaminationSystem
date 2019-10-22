@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 def gitlab(request):
     #Process Event...
     event = request.META.get('HTTP_X_GITLAB_EVENT', 'ping')
+
+    #Logging
     logger.info('notification of successful build received')
 
 
