@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from login.forms import UserUpdateForm
 from user.forms import ProfileUpdateForm
 from user.models import Profile
+from django.utils import timezone
+from .forms import addTest, testUpdate
 
 import logging
 logger = logging.getLogger(__name__)
@@ -18,7 +20,7 @@ def student_view(request, *args, **kwargs):
     if request.user.profile.role == 'S':
 	    return render(request, "student_logged_in.html", { })
     else:
-        return HttpResponse("<h1> Welcome TEACHER</h1>")
+        return render(request, "teacher.html", { })
 	
 
 def logout_view(request):
@@ -65,3 +67,35 @@ def agile_test(request, *args, **kwargs):
     #return HttpResponse("<h1> Welcome Student</h1>")
     return render(request, "ag.html", { })
 
+
+def test_detail(request):
+	return render(request, "test_detail.html",pk=post.pk)
+
+def add_test(request, *args, **kwargs):
+	#return render(request, "new_test.html", {})
+	if request.method == "POST":
+		form = addTest(request.POST)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.author = request.user
+			post.published_date = timezone.now()
+			post.save()
+			return redirect('test_detail', pk=post.pk)
+	else:
+		form = addTest()
+	
+	return render(request, "add_test.html", {'form' : form})
+
+def edit_test(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('test_detail', pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'add_test.html', {'form': form})

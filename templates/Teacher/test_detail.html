@@ -1,0 +1,22 @@
+{% extends 'teacher_base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <a class="btn btn-default" href="{% url 'add_test' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <h2>{{ post.title }}</h2>
+        <h4>{{ post.question|linebreaksbr }}</h4>>
+        <p>{{ post.option1|linebreaksbr }}</p>
+        <p>{{ post.option2|linebreaksbr }}</p>
+        <p>{{ post.option3|linebreaksbr }}</p>
+        <p>{{ post.option4|linebreaksbr }}</p>
+        <h4>{{ post.correct|linebreaksbr }}</h4>>
+    </div>
+{% endblock %}
