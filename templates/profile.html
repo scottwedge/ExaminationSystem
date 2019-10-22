@@ -71,8 +71,6 @@
 				<span class="badge">{{user.profile.role}}</span>
 			  <h3 class="card-title">{{user.username}}</h3>
 			  <p> Name : {{user.first_name}} {{user.last_name}}  </p>
-			  <p> Username : {{user.username}} </p>
-			  <p> Name : {{user.first_name}} {{user.last_name}}  </p>
 
 			  <p> Country : {{user.profile.country}} </p>
 			  <p> State : {{user.profile.state}} </p>
@@ -80,7 +78,8 @@
 			  <p> Last Login : {{user.last_login}} </p>
 			  <p> Date Account Created : {{user.date_joined}} </p>
 			  <h5>{{user.email}} </h5>
-			  <h5>Some breif description about the user.</h5>
+			  <h5>{{user.profile.bio}}</h5>
+
 			  <a class ="ml-2" href="{% url 'changeprofile' %}"> Update Profile </a>
 			</div>
 		  </div>

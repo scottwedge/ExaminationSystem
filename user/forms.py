@@ -7,7 +7,8 @@ class ProfileUpdateForm(forms.ModelForm):
     country = forms.CharField(required=False, label='Country')
     state = forms.CharField(required=False, label='State')
     city = forms.CharField(required=False, label='City')
+    bio =  forms.CharField(required=False, label='Bio')
 
     class Meta:
         model = Profile
-        fields = ('country','image','state','city')
+        fields = ('country','image','state','city','bio')

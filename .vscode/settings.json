@@ -4,5 +4,6 @@
         
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "python.pythonPath": "/Users/asthasharma/.pyenv/versions/3.6.1/bin/python"
 }
