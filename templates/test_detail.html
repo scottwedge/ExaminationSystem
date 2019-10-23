@@ -1,0 +1,22 @@
+{% extends 'teacher_base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="tests">
+        {% if tests.published_date %}
+            <div class="date">
+                {{ test.published_date }}
+            </div>
+        {% endif %}
+        <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+        <h2>{{ test.title }}</h2>
+        <h4>{{ test.question|linebreaksbr }}</h4>
+        <p>{{ test.option1|linebreaksbr }}</p>
+        <p>{{ test.option2|linebreaksbr }}</p>
+        <p>{{ test.option3|linebreaksbr }}</p>
+        <p>{{ test.option4|linebreaksbr }}</p>
+        <h4>{{ test.correct|linebreaksbr }}</h4>
+    </div>
+{% endblock %}

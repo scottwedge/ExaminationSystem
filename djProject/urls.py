@@ -42,9 +42,9 @@ urlpatterns = [
     #path('teacher/', teacher_view(template_name='Teacher/teacher.html')),
 
     #test Views
-    path('test/add_test/', add_test, name='add_test'),
-    path('test/<int:pk>/edit/', edit_test, name='edit_test'),
-    path('test/<int:pk>/', test_detail, name='test_detail'),
+    path('add_test/', add_test),
+    path('test<int:pk>/edit/', edit_test, name='edit_test'),
+    path('test_detail/', test_detail),
 
     #Webhooks
     path('hooks/', gitlab),
