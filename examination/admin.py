@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import CourseCourse
+from .models import exam
 from django.contrib.auth.models import User
 # Register your models here.
 
@@ -9,6 +10,7 @@ class CourseAdmin(admin.ModelAdmin):
     model = CourseCourse
     filter_horizontal = ('student',)
 
-admin.site.register(CourseCourse,CourseAdmin )
+admin.site.register(CourseCourse,CourseAdmin)
+admin.site.register(exam)
 
 
