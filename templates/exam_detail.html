@@ -1,0 +1,22 @@
+{% extends 'teacher_base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="exam">
+        {% if exam.published_date %}
+            <div class="date">
+                {{ exam.published_date }}
+            </div>
+        {% endif %}
+        <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+        <h2>{{ exam.title }}</h2>
+        <h4>{{ exam.question|linebreaksbr }}</h4>
+        <p>{{ exam.option1|linebreaksbr }}</p>
+        <p>{{ exam.option2|linebreaksbr }}</p>
+        <p>{{ exam.option3|linebreaksbr }}</p>
+        <p>{{ exam.option4|linebreaksbr }}</p>
+        <h4>{{ exam.correct|linebreaksbr }}</h4>
+    </div>
+{% endblock %}

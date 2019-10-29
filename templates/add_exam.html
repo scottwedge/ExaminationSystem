@@ -59,35 +59,67 @@ li {
 </div>
 
 <br /> 
-<p align="right"><button style="margin-bottom: 10px;"class=" btn btn-default" onclick="remove()"> Delete Question </button></p>
+<p align="right"><button style="margin-bottom: 10px;" id='remove' class=" btn btn-default" onclick="deleteQuestion()"> Delete Question </button></p>
 
 
 </div>
-
+<div id="newBlock"></div>
 </div> 
 
-<button class="btn btn-success" type="button" id="add" onclick="addAnother()" value="0">Add Question </button>
+<button class="btn btn-success" type="button" id="add" onclick="makeClone()" value="0">Add Question </button>
 <button class="btn btn-success" type="submit">Save </button>
 <button class="btn btn-default" type="button">Cancel </button>
 </form>
 
 
 <script>
+  var cloneCntr = 1;
+  function makeClone() {
+      // clone the div
+      var clone = $("#newQuestion").clone(false);
+      // change all id values to a new unique value by adding "_cloneX" to the end
+      // where X is a number that increases each time you make a clone
+      $("*", clone).add(clone).each(function() {
+          if (this.id) {
+              this.id = this.id + "_clone" + cloneCntr;
+          }
+          if (this.name) {
+              this.name = this.name + "_clone" + cloneCntr;
+          }
+      });
+      ++cloneCntr;
+      $('.container').append(clone);                         
+
+  }
   function addAnother(){
-    var len = $('#add').val();
+    var count = 1;
+    $('#newQuestion')
+      .clone().attr('value','')
+      .attr ('id','newQuestion'+count)
+      .appendTo("#newBlock")
+    count=count+1;
+    
+      /* var len = $('#add').val();
     len++;
     //creating new div block for adding another question 
-    $('.container').append('<div id="newBlock'+len+'"> </div>') 
+    $('.container').append('<div id="newBlock'+len+'"> </div>')
+    
+    console.log(len);
 
     //cloning the original block structure and appending it to the newly created div
     
 
-    $("#newQuestion").clone().appendTo('#newBlock'+len);
+    $("#newQuestion").clone().appendTo('#newBlock'+len); 
+    
+    
+    }*/
 
   
-}
-  function remove(){
-    $("#newBlock"+len).remove();
+  }
+
+  
+  function deleteQuestion(){
+    $('#remove').closest('#newQuestion').find('element').not(':first').remove();
   }
 
 </script>

@@ -7,8 +7,8 @@ from login.forms import UserUpdateForm
 from user.forms import ProfileUpdateForm
 from user.models import Profile
 from django.utils import timezone
-from .forms import addTest, testUpdate
-from .models import tests
+""" from .forms import addExam, examUpdate
+from .models import exam """
 
 import logging
 logger = logging.getLogger(__name__)
@@ -68,38 +68,38 @@ def agile_test(request, *args, **kwargs):
     #return HttpResponse("<h1> Welcome Student</h1>")
     return render(request, "ag.html", { })
 
-def test_detail(request, *args, **kwargs):
-    test = tests.objects.all() 
-    butt= test[0]
-    return render(request, "test_detail.html", {'test':butt})
+""" def exam_detail(request, *args, **kwargs):
+    element = exam.objects.all() 
+    first= element[0]
+    return render(request, "exam_detail.html", {'exam':first})
 
 	#return render(request, "test_detail.html", {  })
 
-def add_test(request):
+def add_exam(request):
 	#return render(request, "new_test.html", {})
 	if request.method == "POST":
-		form = addTest(request.POST)
+		form = addExam(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('/test_detail')
+			return redirect('/exam_detail')
 	else:
-		form = addTest()
+		form = addExam()
 	
-	return render(request, "add_test.html", {'form' : form})
+	return render(request, "add_exam.html", {'form' : form})
 
-def edit_test(request, pk):
-    post = get_object_or_404(tests, pk=pk)
+def edit_exam(request, pk):
+    post = get_object_or_404(exam, pk=pk)
     if request.method == "POST":
-        form = addTest(request.POST, instance=post)
+        form = addExam(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('test_detail', pk=post.pk)
+            return redirect('exam_detail', pk=post.pk)
     else:
-        form = addTest(instance=post)
-    return render(request, 'add_test.html', {'form': form})
+        form = addExam(instance=post)
+    return render(request, 'add_exam.html', {'form': form}) """

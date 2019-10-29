@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
-from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view, add_test, edit_test, test_detail
+from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view 
 from login.views import login_view, register_view
+from examination.views import add_exam, edit_exam, exam_detail
 from django.conf import settings
 from django.conf.urls.static import static
 from hooks.views import gitlab
@@ -42,9 +43,9 @@ urlpatterns = [
     #path('teacher/', teacher_view(template_name='Teacher/teacher.html')),
 
     #test Views
-    path('add_test/', add_test),
-    path('test<int:pk>/edit/', edit_test, name='edit_test'),
-    path('test_detail/', test_detail),
+    path('add_exam/', add_exam),
+    path('exam<int:pk>/edit/', edit_exam, name='edit_exam'),
+    path('exam_detail/', exam_detail ),
 
     #Webhooks
     path('hooks/', gitlab),

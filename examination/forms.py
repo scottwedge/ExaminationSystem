@@ -1,4 +1,4 @@
-""" from django import forms
+from django import forms
 from .models import exam
 
 
@@ -71,4 +71,4 @@ class examUpdate(forms.ModelForm):
 
 	class Meta:
 		model = exam
-		fields = ('title','question','option1','option2','option3','option4','correct') """
+		fields = ('title','question','option1','option2','option3','option4','correct')

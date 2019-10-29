@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import tests
+""" from .models import exam
 
 # Register your models here.
-admin.site.register(tests)
+admin.site.register(exam) """
