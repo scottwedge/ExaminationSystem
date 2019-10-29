@@ -9,7 +9,7 @@ from user.models import Profile
 from django.utils import timezone
 from .forms import addTest, testUpdate
 from .models import tests
-
+from examination.models import CourseCourse
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -19,9 +19,24 @@ def student_view(request, *args, **kwargs):
 	#return HttpResponse("<h1> Welcome Student</h1>")
     logger.info('Homepage accessed')
     if request.user.profile.role == 'S':
-	    return render(request, "student_logged_in.html", { })
+        studentCourses = CourseCourse.objects.filter(student=request.user) 
+        
+        print(studentCourses)
+
+        context = {
+            'studentCourses' : studentCourses
+        }
+        
+        return render(request,"student_logged_in.html",context)
     else:
-        return render(request, "teacher.html", { })
+        teacherCourses = CourseCourse.objects.filter(teacher=request.user) 
+        
+        print(teacherCourses)
+
+        context = {
+            'teacherCourses' : teacherCourses
+        }
+        return render(request, "teacher.html", context)
 	
 
 def logout_view(request):

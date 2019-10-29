@@ -10,14 +10,14 @@
 <div class="container">
 
 
-
+   {% for course in teacherCourses %}
   <div class = "row">
          <div class = "col-sm-8 col-md-4">
           <div class = "thumbnail">
                <img src = "https://images.pexels.com/photos/34592/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 6522">
             </div>
             <div>
-               <h3 class = "caption">6522 - Machine Learning II</h3>
+               <h3 class = "caption">{{course.course_name}}</h3>
 
                   <a href = "../add_test/" class = "btn btn-primary" role = "button"data-toggle="modal" >
                      Add
@@ -32,50 +32,7 @@
             </div>
         </div>
 
-        <div class = "col-sm-8 col-md-4">
-        	<div class = "thumbnail">
-               <img src = "https://images.pexels.com/photos/301920/pexels-photo-301920.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 6363">
-            </div>
-            <div>
-               <h3 class = "caption">6555 - Modern Database Management</h3>
-
-                  <a href = "../add_test/" class = "btn btn-primary" role = "button"data-toggle="modal" >
-                     Add
-                  </a> 
-                  <a href = "" class = "btn btn-default" role = "button">
-                     Update
-                  </a>
-                  <a href = "" class = "btn btn-default" role = "button">
-                     View
-                  </a>
-               
-            </div>
-        </div>
-
-
-        <div class = "col-sm-8 col-md-4">
-            <div class = "thumbnail">
-               <img src = "https://images.pexels.com/photos/5711/books-colorful-book-5711.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 1000">
-            </div>
-            <div>
-               <h3 class="caption" >1000 - Introduction to Computers</h3>
-
-                  <a href = "../add_test/" class = "btn btn-primary" role = "button" data-toggle="modal" >
-                     Add
-                  </a> 
-                  <a href = "" class = "btn btn-default" role = "button">
-                     Update
-                  </a>
-                  <a href = "" class = "btn btn-default" role = "button">
-                     View
-                  </a>
-               
-            </div>
-        </div>
-    </div>
-
-
-
+        {% endfor %}
 </div>
 
 
