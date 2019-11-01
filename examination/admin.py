@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import CourseCourse
-from .models import exam
+from .models import CourseCourse, exam, MultipleChoice
+
 from django.contrib.auth.models import User
 # Register your models here.
 
@@ -12,5 +12,5 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(CourseCourse,CourseAdmin)
 admin.site.register(exam)
-
+admin.site.register(MultipleChoice)
 

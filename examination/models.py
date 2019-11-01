@@ -3,28 +3,42 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.class 
+class MultipleChoice(models.Model):
+    #mc_id = models.IntegerField(primary_key=True)
+    exam_name = models.ForeignKey('exam', on_delete=models.CASCADE)
+    question_name = models.TextField(blank=True, null=True)
+    answer1 = models.TextField(blank=True, null=True)
+    answer2 = models.TextField(blank=True, null=True)
+    answer3 = models.TextField(blank=True, null=True)
+    answer4 = models.TextField(blank=True, null=True)
+    correct_answer = models.TextField(blank=True, null=True)
+    #question_type_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'multiple_choice'
+
+
+class exam(models.Model):
+	title = models.CharField(max_length=200)
+	question = models.ManyToManyField(MultipleChoice,blank=True,null=True)
+	
+	def __str__(self):
+		return f'{self.title} exam'
+
+
+
 class CourseCourse(models.Model):
     course_name = models.CharField(max_length=50)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     student = models.ManyToManyField(User,related_name='+')
-    
+    course_exam = models.ManyToManyField(exam)
     def __str__(self):
         return f'{self.course_name}'
 
 
 
 
-class exam(models.Model):
-	title = models.CharField(max_length=200)
-	question = models.CharField(max_length=200)
-	option1 = models.CharField(max_length=100)
-	option2 = models.CharField(max_length=100)
-	option3 = models.CharField(max_length=100)
-	option4 = models.CharField(max_length=100)
-	correct = models.CharField(max_length=100)
-	def __str__(self):
-		return f'{self.title} exam'
-        
 """ class Exam(models.Model):
     exam_id = models.IntegerField(primary_key=True)
     exam_name = models.TextField(blank=True, null=True)
@@ -77,19 +91,7 @@ class ExaminationQuestion(models.Model):
         db_table = 'examination_question'
 
 
-class MultipleChoice(models.Model):
-    mc_id = models.IntegerField(primary_key=True)
-    mc_name = models.TextField(blank=True, null=True)
-    answer1 = models.TextField(blank=True, null=True)
-    answer2 = models.TextField(blank=True, null=True)
-    answer3 = models.TextField(blank=True, null=True)
-    answer4 = models.TextField(blank=True, null=True)
-    correct_answer = models.TextField(blank=True, null=True)
-    question_type_id = models.IntegerField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'multiple_choice'
 
 
 class QuestionType(models.Model):
