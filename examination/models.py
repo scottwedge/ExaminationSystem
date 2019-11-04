@@ -11,8 +11,18 @@ class CourseCourse(models.Model):
     def __str__(self):
         return f'{self.course_name}'
 
-
-class Exam(models.Model):
+class exam(models.Model):
+	title = models.CharField(max_length=200)
+	question = models.CharField(max_length=200)
+	option1 = models.CharField(max_length=100)
+	option2 = models.CharField(max_length=100)
+	option3 = models.CharField(max_length=100)
+	option4 = models.CharField(max_length=100)
+	correct = models.CharField(max_length=100)
+	def __str__(self):
+		return f'{self.title} exam'
+        
+""" class Exam(models.Model):
     exam_id = models.IntegerField(primary_key=True)
     exam_name = models.TextField(blank=True, null=True)
     exam_type_id = models.IntegerField(blank=True, null=True)
@@ -24,7 +34,7 @@ class Exam(models.Model):
     class Meta:
         managed = False
         db_table = 'exam'
-
+ """
 
 class ExamQuestion(models.Model):
     exam_question_id = models.IntegerField(primary_key=True)

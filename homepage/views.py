@@ -7,9 +7,9 @@ from login.forms import UserUpdateForm
 from user.forms import ProfileUpdateForm
 from user.models import Profile
 from django.utils import timezone
-from .forms import addTest, testUpdate
-from .models import tests
-
+#from .forms import addTest, testUpdate
+#from .models import tests
+from examination.models import CourseCourse
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -19,9 +19,20 @@ def student_view(request, *args, **kwargs):
 	#return HttpResponse("<h1> Welcome Student</h1>")
     logger.info('Homepage accessed')
     if request.user.profile.role == 'S':
-	    return render(request, "student_logged_in.html", { })
+        studentCourses = CourseCourse.objects.filter(student=request.user) 
+        
+        context = {
+            'studentCourses' : studentCourses
+        }
+        
+        return render(request,"student_logged_in.html",context)
     else:
-        return render(request, "teacher.html", { })
+        teacherCourses = CourseCourse.objects.filter(teacher=request.user) 
+
+        context = {
+            'teacherCourses' : teacherCourses
+        }
+        return render(request, "teacher.html", context)
 	
 
 def logout_view(request):
@@ -68,38 +79,3 @@ def agile_test(request, *args, **kwargs):
     #return HttpResponse("<h1> Welcome Student</h1>")
     return render(request, "ag.html", { })
 
-def test_detail(request, *args, **kwargs):
-    test = tests.objects.all() 
-    butt= test[0]
-    return render(request, "test_detail.html", {'test':butt})
-
-	#return render(request, "test_detail.html", {  })
-
-def add_test(request):
-	#return render(request, "new_test.html", {})
-	if request.method == "POST":
-		form = addTest(request.POST)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.author = request.user
-			post.published_date = timezone.now()
-			post.save()
-			return redirect('/test_detail')
-	else:
-		form = addTest()
-	
-	return render(request, "add_test.html", {'form' : form})
-
-def edit_test(request, pk):
-    post = get_object_or_404(tests, pk=pk)
-    if request.method == "POST":
-        form = addTest(request.POST, instance=post)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('test_detail', pk=post.pk)
-    else:
-        form = addTest(instance=post)
-    return render(request, 'add_test.html', {'form': form})
