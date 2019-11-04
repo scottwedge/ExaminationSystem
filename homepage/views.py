@@ -21,8 +21,6 @@ def student_view(request, *args, **kwargs):
     if request.user.profile.role == 'S':
         studentCourses = CourseCourse.objects.filter(student=request.user) 
         
-        print(studentCourses)
-
         context = {
             'studentCourses' : studentCourses
         }
@@ -30,8 +28,6 @@ def student_view(request, *args, **kwargs):
         return render(request,"student_logged_in.html",context)
     else:
         teacherCourses = CourseCourse.objects.filter(teacher=request.user) 
-        
-        print(teacherCourses)
 
         context = {
             'teacherCourses' : teacherCourses
