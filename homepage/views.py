@@ -21,8 +21,6 @@ def student_view(request, *args, **kwargs):
     if request.user.profile.role == 'S':
         studentCourses = CourseCourse.objects.filter(student=request.user) 
         
-        print(studentCourses)
-
         context = {
             'studentCourses' : studentCourses
         }
@@ -31,8 +29,6 @@ def student_view(request, *args, **kwargs):
     else:
         teacherCourses = CourseCourse.objects.filter(teacher=request.user) 
         
-        print(teacherCourses)
-
         context = {
             'teacherCourses' : teacherCourses
         }
@@ -75,11 +71,19 @@ def grades_view(request, *args, **kwargs):
 
 @login_required
 def test_view(request, *args, **kwargs):
-    #return HttpResponse("<h1> Welcome Student</h1>")
+    
     return render(request, "taketest.html", { })
 
 @login_required
 def agile_test(request, *args, **kwargs):
-    #return HttpResponse("<h1> Welcome Student</h1>")
+    
     return render(request, "ag.html", { })
+
+@login_required
+def course_exams_view(request, *args, **kwargs):
+    course_exams = CourseCourse.objects.all()
+
+    context = { 'course_exams': course_exams }
+
+    return render(request, "course_exams.html", context)
 
