@@ -80,9 +80,9 @@ def agile_test(request, *args, **kwargs):
     return render(request, "ag.html", { })
 
 @login_required
-def course_exams_view(request, *args, **kwargs):
+def course_exams_view(request, course_id, *args, **kwargs):
     
-    courses = CourseCourse.objects.filter(student=request.user) 
+    courses = CourseCourse.objects.filter(student=request.user).filter(id=course_id) 
     exams = exam.objects.all()
 
     context = { 
