@@ -1,4 +1,8 @@
-<p>Hello World!</p>
-{% for exam in course_exams %}
-{{exam}}
-{% endfor %}
+<p>Select a test!</p>
+{% for course in courses%}
+    {%for exam_name in course.course_exam.all%}
+        
+        <p>{{course}}: {{exam_name}}</p>
+
+    {%endfor%}
+{%endfor%}

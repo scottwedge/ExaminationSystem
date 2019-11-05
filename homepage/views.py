@@ -9,7 +9,7 @@ from user.models import Profile
 from django.utils import timezone
 #from .forms import addTest, testUpdate
 #from .models import tests
-from examination.models import CourseCourse
+from examination.models import CourseCourse, exam
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -81,9 +81,14 @@ def agile_test(request, *args, **kwargs):
 
 @login_required
 def course_exams_view(request, *args, **kwargs):
-    course_exams = CourseCourse.objects.all()
+    
+    courses = CourseCourse.objects.filter(student=request.user) 
+    exams = exam.objects.all()
 
-    context = { 'course_exams': course_exams }
+    context = { 
+        'courses': courses,
+        'exams' : exams,
+     }
 
     return render(request, "course_exams.html", context)
 

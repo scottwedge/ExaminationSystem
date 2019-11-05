@@ -9,8 +9,8 @@ class exam(models.Model):
     class Meta:
         managed = True
         db_table = 'exam'
-	#def __str__(self):
-	#	return f'{self.title} exam'
+    def __str__(self):
+	    return f'{self.title} exam'
 
 class MultipleChoice(models.Model):
     #mc_id = models.IntegerField(primary_key=True)
@@ -34,13 +34,12 @@ class CourseCourse(models.Model):
     course_name = models.CharField(max_length=50)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     student = models.ManyToManyField(User,related_name='+')
-    course_exam = models.ManyToManyField('exam')
+    course_exam = models.ManyToManyField('exam', blank=True)
     class Meta:
         managed = True
         db_table = 'my_course'
-
-    #def __str__(self):
-    #    return f'{self.course_name}'
+    def __str__(self):
+        return f'{self.course_name}'
 
 
 """ class Exam(models.Model):
