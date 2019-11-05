@@ -91,14 +91,24 @@ def agile_test(request, *args, **kwargs):
 
 @login_required
 def course_exams_view(request, course_id, *args, **kwargs):
-    
+    studentCourses = CourseCourse.objects.filter(student=request.user)
     courses = CourseCourse.objects.filter(student=request.user).filter(id=course_id) 
-    exams = exam.objects.all()
 
     context = { 
         'courses': courses,
-        'exams' : exams,
+        'studentCourses' : studentCourses
      }
 
     return render(request, "course_exams.html", context)
 
+@login_required
+def course_grades_view(request, course_id, *args, **kwargs):
+    studentCourses = CourseCourse.objects.filter(student=request.user)
+    courses = CourseCourse.objects.filter(student=request.user).filter(id=course_id) 
+
+    context = { 
+        'courses': courses,
+        'studentCourses' : studentCourses
+     }
+
+    return render(request, "course_grades.html", context)

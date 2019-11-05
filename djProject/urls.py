@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
-from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test,changeprofile_view, course_exams_view 
+from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view 
+from homepage.views import course_exams_view, course_grades_view 
 from login.views import login_view, register_view
 from examination.views import add_exam, edit_exam, exam_detail
 from django.conf import settings
@@ -37,12 +38,14 @@ urlpatterns = [
     path('profile/', profile_view),
     path('changeprofile/', changeprofile_view, name='changeprofile'),
     path('grades/', grades_view),
-    path('course_exams/<course_id>/',course_exams_view),
+    
     path('ag/', agile_test),
 
-    #teacher Views
+    #Course Specific Views
+    path('course_exams/<course_id>/',course_exams_view),
+    path('course_grades/<course_id>/',course_grades_view),
 
-    #test Views
+    #Test Views
     path('add_exam/', add_exam),
     path('exam<int:pk>/edit/', edit_exam, name='edit_exam'),
     path('exam_detail/', exam_detail ),
