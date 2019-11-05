@@ -40,7 +40,7 @@ def logout_view(request):
 
 @login_required
 def changeprofile_view(request, *args, **kwargs):
-    #return HttpResponse("<h1> Welcome Student</h1>")
+    studentCourses = CourseCourse.objects.filter(student=request.user) 
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, request.FILES,  instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -55,19 +55,29 @@ def changeprofile_view(request, *args, **kwargs):
   
     context = {
         'u_form' : u_form,
-        'p_form' : p_form
+        'p_form' : p_form,
+        'studentCourses' : studentCourses
     }
     return render(request, "changeprofile.html", context)
 
 @login_required
 def profile_view(request, *args, **kwargs):
-    #return HttpResponse("<h1> Welcome Student</h1>")
-    return render(request, "profile.html", { })
+    studentCourses = CourseCourse.objects.filter(student=request.user) 
+        
+    context = {
+        'studentCourses' : studentCourses
+    }
+
+    return render(request, "profile.html", context)
 
 @login_required
 def grades_view(request, *args, **kwargs):
-    #return HttpResponse("<h1> Welcome Student</h1>")
-    return render(request, "grades.html", { })
+    studentCourses = CourseCourse.objects.filter(student=request.user) 
+        
+    context = {
+        'studentCourses' : studentCourses
+    }
+    return render(request, "grades.html", context)
 
 @login_required
 def test_view(request, *args, **kwargs):

@@ -37,7 +37,7 @@ urlpatterns = [
     path('profile/', profile_view),
     path('changeprofile/', changeprofile_view, name='changeprofile'),
     path('grades/', grades_view),
-    path('homepage/course_exams/<course_id>/',course_exams_view),
+    path('course_exams/<course_id>/',course_exams_view),
     path('ag/', agile_test),
 
     #teacher Views
