@@ -3,13 +3,19 @@
 
 {% block content %}
 
-<p>Select a test!</p>
+
 {% for course in courses%}
+    <p>Take a test for <b>{{course}} !</b></p>
     {%for exam_name in course.course_exam.all%}
-        
-        <p>{{course}}: {{exam_name}}</p>
+    <div class="list-group ">    
+    <a href="/ag/{{exam_name.id}}" class="list-group-item list-group-item-action"> <p> {{exam_name}}</p></a>
+    </div>
+
 
     {%endfor%}
 {%endfor%}
+
+
+
 
 {%endblock%}

@@ -10,7 +10,7 @@ class exam(models.Model):
         managed = True
         db_table = 'exam'
     def __str__(self):
-	    return f'{self.title} exam'
+	    return f'{self.title}'
 
 class MultipleChoice(models.Model):
     #mc_id = models.IntegerField(primary_key=True)
@@ -26,7 +26,8 @@ class MultipleChoice(models.Model):
     class Meta:
         managed = True
         db_table = 'multiple_choice'
-
+    def __str__(self):
+	    return f'{self.question_name}'
 
 
 
