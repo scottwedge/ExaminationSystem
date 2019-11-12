@@ -1,5 +1,5 @@
 from django import forms
-from .models import exam
+from .models import exam, MultipleChoice
 
 
 class addExam(forms.ModelForm):
@@ -72,3 +72,14 @@ class examUpdate(forms.ModelForm):
 	class Meta:
 		model = exam
 		fields = ('title','question','option1','option2','option3','option4','correct')
+
+#CHOICES = ['answer1','answer2','answer3','answer4']
+class examInput(forms.ModelForm):
+	widget = forms.RadioSelect(choices=['one','two','answer3','answer4'])
+	big = forms.CharField(label='bbbb')
+	class Meta:
+		model = MultipleChoice
+		fields = ('answer1','answer2','answer3','answer4')
+
+
+

@@ -42,6 +42,15 @@ class CourseCourse(models.Model):
     def __str__(self):
         return f'{self.course_name}'
 
+class ExamGrade(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    exam = models.ForeignKey('exam', on_delete=models.CASCADE)
+    grade = models.IntegerField(default=0)
+    class Meta:
+        managed = True
+        db_table = 'exam_grade'
+    def __str__(self):
+        return f'{self.exam} grade for {self.student}'
 
 """ class Exam(models.Model):
     exam_id = models.IntegerField(primary_key=True)

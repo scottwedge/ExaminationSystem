@@ -1,7 +1,3 @@
-from django.test import TestCase
-from django.contrib.auth.models import User
-from django.db import models
-
 
 from django.apps import apps
 from django.contrib.auth import authenticate, signals
@@ -10,6 +6,7 @@ from django.core.exceptions import FieldDoesNotExist
 from django.test import TestCase, override_settings
 from django.test.client import RequestFactory
 
+from .models import Profile
 
 
 @override_settings(ROOT_URLCONF='login.urls')
@@ -104,4 +101,3 @@ class SignalTestCase(TestCase):
             #self.assertEqual(len(signals.user_logged_in.receivers), 1)
         finally:
             signals.user_logged_in.receivers = last_login_receivers
-   

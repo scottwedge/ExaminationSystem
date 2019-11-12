@@ -10,11 +10,11 @@ class TestLogIn(TestCase):
         }
         print("setUp: Add user and password to self.credentials")
         User.objects.create_user(**self.credentials)
-        pass
+        self.assertTrue(User)
 
     def tearDown(self):
-        # Clean up run after every test method.
-        pass
+        self.credentials.clear
+       
 
     def test_login_True(self):
         # send login data
