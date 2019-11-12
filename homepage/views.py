@@ -84,11 +84,13 @@ def grades_view(request, *args, **kwargs):
 def agile_test(request, exam_id, *args, **kwargs):
     studentCourses = CourseCourse.objects.filter(student=request.user) 
     mcquestions = MultipleChoice.objects.filter(exam_name=exam_id)
-    examform = examInput(request.POST, request.FILES,  instance=mcquestions)
+    mcquestion = MultipleChoice.objects.get(pk=1)
+    question_form = examInput(instance=mcquestion)
     context = {
         'studentCourses' : studentCourses,
         'mcquestions' : mcquestions,
-        'examform':examform
+        'question_form' : question_form
+        
     }
 
     return render(request, "ag.html", context)
