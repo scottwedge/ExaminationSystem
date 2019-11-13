@@ -75,11 +75,13 @@ class examUpdate(forms.ModelForm):
 
 #CHOICES = ['answer1','answer2','answer3','answer4']
 class examInput(forms.ModelForm):
-	widget = forms.RadioSelect(choices=['one','two','answer3','answer4'])
-	big = forms.CharField(label='bbbb')
+
 	class Meta:
 		model = MultipleChoice
-		fields = ('answer1','answer2','answer3','answer4')
+		fields = ('potential_answer',)
+		widgets = {
+            'potential_answer': forms.RadioSelect(),
+        }
 
 
 

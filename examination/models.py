@@ -12,14 +12,16 @@ class exam(models.Model):
     def __str__(self):
 	    return f'{self.title}'
 
+class PotentialAnswer(models.Model):
+    answer = models.CharField(max_length=400, null=True, blank=True)
+    def __str__(self):
+	    return f'{self.answer}'
+
 class MultipleChoice(models.Model):
-    #mc_id = models.IntegerField(primary_key=True)
+    #mc_id = models.IntegerField(primary_key=True
     exam_name = models.ForeignKey('exam', on_delete=models.CASCADE)
     question_name = models.TextField(blank=True, null=True)
-    answer1 = models.TextField(blank=True, null=True)
-    answer2 = models.TextField(blank=True, null=True)
-    answer3 = models.TextField(blank=True, null=True)
-    answer4 = models.TextField(blank=True, null=True)
+    potential_answer = models.ManyToManyField('PotentialAnswer', blank=True)
     correct_answer = models.TextField(blank=True, null=True)
     #question_type_id = models.IntegerField(blank=True, null=True)
 
