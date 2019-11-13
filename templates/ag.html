@@ -26,16 +26,17 @@
     <h2>{{mcquestions.first.exam_name}}</h2>
     <p>This is an individual test assignmnet. All work must be your own.</p>
     <hr />
-    <ol>
+    
     {% for question in mcquestions %}
     
-    <form method='POST'>
+    <form method='POST'> {% csrf_token %}
       <h3>
-        {{question_form.as_p}}
-          <li>{{question.question_name}}</li>
         
+          
+            {{question_form.as_p}}
       </h3>
-      <div class="radio">
+      {{questionaire.options}} <!--refer to add_mcqs in views.py for examination app -->
+      <!-- <div class="radio">
         <label >
           <input type="radio" name="optradio" >{{question.answer1}}
         </label>
@@ -54,10 +55,10 @@
         <label>
           <input type="radio" name="optradio">{{question.answer4}}
         </label>
-      </div>
+      </div> -->
     </form>
   {%endfor%}
-</ol>
+
   <a class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal"> Submit</a>
 
   

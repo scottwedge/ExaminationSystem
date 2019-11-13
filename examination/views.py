@@ -1,8 +1,20 @@
 from django.shortcuts import render,redirect
 from django.utils import timezone
-from .forms import addExam, examUpdate
+from .forms import addExam, examUpdate, examInput
 from .models import exam
 # Create your views here.
+def add_mcqs(request,*args, **kwargs):
+    if request.method =='POST':
+        questionaire = examInput(request.POST)
+        if questionaire.is_valid():
+            mcq=questionaire.save(commit=False)
+            mcq.save()
+            return redirect('#')
+    else:
+        questionaire = examInput()
+    
+    return render(request, 'ag.html', {'questionaire':questionaire})
+
 def exam_detail(request, *args, **kwargs):
     element = exam.objects.all() 
     first= element[0]

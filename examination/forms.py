@@ -1,5 +1,6 @@
 from django import forms
 from .models import exam, MultipleChoice
+#from homepage.views import agile_test
 
 
 class addExam(forms.ModelForm):
@@ -73,13 +74,16 @@ class examUpdate(forms.ModelForm):
 		model = exam
 		fields = ('title','question','option1','option2','option3','option4','correct')
 
-#CHOICES = ['answer1','answer2','answer3','answer4']
-class examInput(forms.ModelForm):
-	widget = forms.RadioSelect(choices=['one','two','answer3','answer4'])
-	big = forms.CharField(label='bbbb')
-	class Meta:
-		model = MultipleChoice
-		fields = ('answer1','answer2','answer3','answer4')
+
+for question in MultipleChoice.objects.filter(pk=1):
+	CHOICES = [(1,question.answer1),(2,question.answer2),(3,question.answer3),(4,question.answer4)]
+	class examInput(forms.ModelForm):
+		options = forms.ChoiceField(choices=CHOICES, widget = forms.RadioSelect, label=question.question_name)
+		#widget = forms.RadioSelect(choices=['one','two','answer3','answer4'])
+		#big = forms.CharField(label='bbbb')
+		class Meta:
+			model = MultipleChoice
+			fields = ('answer1',)
 
 
 
