@@ -31,45 +31,48 @@
     <!--WE PROBABLY DONT EVEN NEED THIS // put an incrementable var here "score"// actually, just have this be THE django score-->
 
     {% for question in mcquestions %}
-    
+    <div class="questions">
     <form method='POST' data-toggle="validator">
       <h3>
         {{question_form.as_p}}
+        
           <li>{{question.question_name}}</li>
         
       </h3>
       <div class="radio">
         <label >
           <!--ask astha how to properly assign values-->
-          <input type="radio" name="optradio" value="1" required>{{question.answer1}}
+          <input class="option" type="radio" name="optradio" value=1 required>{{question.answer1}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="optradio" value=2 required>{{question.answer2}}
+          <input class="option" type="radio" name="optradio" value=2 required>{{question.answer2}}
         </label>
       </div>
       <div class="radio">
         <label >
-          <input type="radio" name="optradio" value=3 required>{{question.answer3}}
+          <input class="option" type="radio" name="optradio" value=3 required>{{question.answer3}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="optradio" value=4 required>{{question.answer4}}
+          <input class="option" type="radio" name="optradio" value=4 required>{{question.answer4}}
         </label>
       </div>
       
       <!--validate this... if ( value:selected == {{question.correct_answer}} ) then increment score-->
 
     </form>
-  {%endfor%}
+  </div>
 
 </ol>
-  <a class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal"> Submit</a>
+  <div id="result">
 
-  
-  <!--Model for Submit button -->
+  </div>
+  {%endfor%}
+  <a class="btn btn-lg btn-success" id='next' onclick="displayRadioValue()"> Next</a>
+ 
 
   <!--submit botton needs logic to record "score" in our DB, perhaps socre = score / number of questions-->
   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -93,8 +96,63 @@
 
 </div>
 
-
-
 </body>
+<script>
+function displayRadioValue() { 
+            var ele = document.getElementsByName('optradio'); 
+              
+            for(i = 0; i < ele.length; i++) { 
+                if(ele[i].checked) 
+                document.getElementById("result").innerHTML
+                        = "Selected: "+ele[i].value; 
+            } 
+        }  
+  //Store the total number of questions
+var totalQuestions = $('.questions').size();
+
+//Set the current question to display to 1
+var currentQuestion = 0;
+
+//Store the selector in a variable.
+//It is good practice to prefix jQuery selector variables with a $
+$questions = $('.questions');
+
+//Hide all the questions
+$questions.hide();
+
+//Show the first question
+$($questions.get(currentQuestion)).fadeIn();
+
+//attach a click listener to the HTML element with the id of 'next'
+$('#next').click(function () {
+
+     //fade out the current question,
+     //putting a function inside of fadeOut calls that function 
+     //immediately after fadeOut is completed, 
+     //this is for a smoother transition animation
+     $($questions.get(currentQuestion)).fadeOut(function () {
+
+        //increment the current question by one
+        currentQuestion = currentQuestion + 1;
+
+        //if there are no more questions do stuff
+        if (currentQuestion == totalQuestions) {
+
+            var result = sum_values()
+
+            //do stuff with the result
+            alert(result);
+
+        } else {
+
+            //otherwise show the next question
+            $($questions.get(currentQuestion)).fadeIn();
+
+        }
+    });
+
+});
+  
+  </script>
 </html>
 {%endblock%}
