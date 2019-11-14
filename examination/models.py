@@ -11,9 +11,6 @@ class CourseCourse(models.Model):
     def __str__(self):
         return f'{self.course_name}'
 
-
-
-
 class exam(models.Model):
 	title = models.CharField(max_length=200)
 	question = models.CharField(max_length=200)
