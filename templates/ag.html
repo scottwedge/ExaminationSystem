@@ -27,9 +27,12 @@
     <p>This is an individual test assignmnet. All work must be your own.</p>
     <hr />
     <ol>
+    
+    <!--WE PROBABLY DONT EVEN NEED THIS // put an incrementable var here "score"// actually, just have this be THE django score-->
+
     {% for question in mcquestions %}
     
-    <form method='POST'>
+    <form method='POST' data-toggle="validator">
       <h3>
         {{question_form.as_p}}
           <li>{{question.question_name}}</li>
@@ -37,31 +40,38 @@
       </h3>
       <div class="radio">
         <label >
-          <input type="radio" name="optradio" >{{question.answer1}}
+          <!--ask astha how to properly assign values-->
+          <input type="radio" name="optradio" value="1" required>{{question.answer1}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="optradio">{{question.answer2}}
+          <input type="radio" name="optradio" value=2 required>{{question.answer2}}
         </label>
       </div>
       <div class="radio">
         <label >
-          <input type="radio" name="optradio">{{question.answer3}}
+          <input type="radio" name="optradio" value=3 required>{{question.answer3}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input type="radio" name="optradio">{{question.answer4}}
+          <input type="radio" name="optradio" value=4 required>{{question.answer4}}
         </label>
       </div>
+      
+      <!--validate this... if ( value:selected == {{question.correct_answer}} ) then increment score-->
+
     </form>
   {%endfor%}
+
 </ol>
   <a class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal"> Submit</a>
 
   
-  <!--Modal for Submit button -->
+  <!--Model for Submit button -->
+
+  <!--submit botton needs logic to record "score" in our DB, perhaps socre = score / number of questions-->
   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
