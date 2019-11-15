@@ -85,11 +85,9 @@ def agile_test(request, exam_id, *args, **kwargs):
     studentCourses = CourseCourse.objects.filter(student=request.user) 
     mcquestions = MultipleChoice.objects.filter(exam_name=exam_id)
     mcquestion = MultipleChoice.objects.get(pk=1)
-    question_form = examInput(instance=mcquestion)
     context = {
         'studentCourses' : studentCourses,
         'mcquestions' : mcquestions,
-        'question_form' : question_form
         
     }
 
