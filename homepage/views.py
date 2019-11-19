@@ -11,6 +11,7 @@ from django.utils import timezone
 #from .models import tests
 from examination.models import CourseCourse, exam, MultipleChoice
 from examination.forms import examInput
+from course.forms import CourseCreationForm
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -84,7 +85,6 @@ def grades_view(request, *args, **kwargs):
 def agile_test(request, exam_id, *args, **kwargs):
     studentCourses = CourseCourse.objects.filter(student=request.user) 
     mcquestions = MultipleChoice.objects.filter(exam_name=exam_id)
-    mcquestion = MultipleChoice.objects.get(pk=1)
     context = {
         'studentCourses' : studentCourses,
         'mcquestions' : mcquestions,
@@ -116,3 +116,22 @@ def course_grades_view(request, course_id, *args, **kwargs):
      }
 
     return render(request, "course_grades.html", context)
+
+@login_required
+def add_course_view(request, *args, **kwargs):
+    logger.info('Add course accessed')
+    if request.user.profile.role == 'T':
+        if request.method == 'POST':
+            add_form = CourseCreationForm(request.POST)
+
+            if add_form.is_valid:
+                add_form.save()
+            return redirect('/homepage')
+        else:  
+            add_form = CourseCreationForm()
+    
+        context = {'add_form' : add_form }
+        
+        return render(request,"add_course.html",context)
+    else:
+        return redirect('/')
