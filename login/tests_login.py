@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from django.test import TestCase
+
 
 class TestLogIn(TestCase):
     def setUp(self):
@@ -20,5 +20,5 @@ class TestLogIn(TestCase):
         # send login data
         response = self.client.post('/login/', self.credentials, follow=True)
         # should be logged in now
-        print("Logging In")
+        #print("Logging In")
         self.assertTrue(response)
