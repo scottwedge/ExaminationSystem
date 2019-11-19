@@ -11,7 +11,7 @@ from django.utils import timezone
 #from .models import tests
 from examination.models import CourseCourse, exam, MultipleChoice
 from examination.forms import examInput
-from course.forms import CourseCreationForm
+from course.forms import CourseCreationForm, AddExamToCourseForm
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -135,3 +135,23 @@ def add_course_view(request, *args, **kwargs):
         return render(request,"add_course.html",context)
     else:
         return redirect('/')
+
+@login_required
+def apply_exam_view(request, course_id, *args, **kwargs):
+    logger.info('Apply exam accessed')
+    course = CourseCourse.objects.filter(teacher=request.user).filter(id=course_id).first()
+    if request.user.profile.role == 'T':
+        if request.method == 'POST':
+            add_form = AddExamToCourseForm(request.POST, request.FILES, instance=course)
+
+            if add_form.is_valid:
+                add_form.save()
+            return redirect('/homepage')
+        else:  
+            add_form = AddExamToCourseForm(instance=course)
+    
+        context = {'add_form' : add_form }
+        
+        return render(request,"course_apply_exam.html",context)
+    else:
+        return redirect('/')        

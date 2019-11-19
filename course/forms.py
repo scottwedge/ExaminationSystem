@@ -9,3 +9,8 @@ class CourseCreationForm(forms.ModelForm):
         model = CourseCourse
         fields =  ['course_name', 'teacher', 'student']
 
+class AddExamToCourseForm(forms.ModelForm):
+    class Meta:
+        model = CourseCourse
+        fields = ['course_exam',]
+

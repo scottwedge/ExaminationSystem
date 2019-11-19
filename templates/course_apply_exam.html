@@ -1,0 +1,17 @@
+{% extends 'teacher_base.html' %}
+
+{% load static %}
+{% block content %}
+
+		<form method="POST" enctype ="multipart/form-data">
+            {%csrf_token%}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb 4">Add exams to your course!</legend>
+				{{add_form.as_p}}
+            </fieldset>
+            <div class="form-group">
+                <button class = "btn btn-outline-info" type="submit"> Update</button>
+            </div>
+        </form>
+
+{% endblock %}
