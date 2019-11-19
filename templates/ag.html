@@ -26,55 +26,60 @@
     <h2>{{mcquestions.first.exam_name}}</h2>
     <p>This is an individual test assignmnet. All work must be your own.</p>
     <hr />
-    <ol>
+   
     
-    <!--WE PROBABLY DONT EVEN NEED THIS // put an incrementable var here "score"// actually, just have this be THE django score-->
 
     {% for question in mcquestions %}
     <div class="questions">
-    <form method='POST' data-toggle="validator">
+    <form method='POST' >
       <h3>
-        {{question_form.as_p}}
-        
           <li>{{question.question_name}}</li>
         
       </h3>
+      <input type = hidden name="question_id"value ={{question.pk}}> 
       <div class="radio">
         <label >
-          <!--ask astha how to properly assign values-->
-          <input class="option" type="radio" name="optradio" value=1 required>{{question.answer1}}
+          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer1}}' required>{{question.answer1}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input class="option" type="radio" name="optradio" value=2 required>{{question.answer2}}
+          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer2}}' required>{{question.answer2}}
         </label>
       </div>
       <div class="radio">
         <label >
-          <input class="option" type="radio" name="optradio" value=3 required>{{question.answer3}}
+          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer3}}' required>{{question.answer3}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input class="option" type="radio" name="optradio" value=4 required>{{question.answer4}}
+          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer4}}' required>{{question.answer4}}
+        </label>
+      </div>
+      <div>
+        <label>
+            <input class="answer" type="hidden" name='{{forloop.counter0}}' id="myVar" value='{{question.correct_answer}}'>
         </label>
       </div>
       
       <!--validate this... if ( value:selected == {{question.correct_answer}} ) then increment score-->
-
+     
+   
     </form>
   </div>
 
-</ol>
+
   <div id="result">
 
   </div>
   {%endfor%}
+  
+
   <a class="btn btn-lg btn-success" id='next' onclick="displayRadioValue()"> Next</a>
  
 
-  <!--submit botton needs logic to record "score" in our DB, perhaps socre = score / number of questions-->
+  <!--not in use for now-->
   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -97,16 +102,54 @@
 </div>
 
 </body>
-<script>
+<script type="text/javascript" >
+var name="{{ forloop.counter }}";
+var result =[];
 function displayRadioValue() { 
-            var ele = document.getElementsByName('optradio'); 
+            var score = 0
+
+
+            var ele = document.getElementsByClassName('option');
+            var answerkey = document.getElementsByClassName('answer');
+            
+            for (i=0;i<(answerkey.length);i++){
+              console.log(answerkey[i].value);
+            }
+            
+           
+    
+
+              for(j = 0; j < (ele.length); j++) { 
+                
+                  if(ele[j].checked){
+                    result.push(ele[j].value);
+                    
+                  }
+                  
+                 
+              }
+              //console.log(result);
+
+            var useranswer = result.slice(Math.max(result.length -answerkey.length,1));
+            //console.log(useranswer);
               
-            for(i = 0; i < ele.length; i++) { 
-                if(ele[i].checked) 
-                document.getElementById("result").innerHTML
-                        = "Selected: "+ele[i].value; 
-            } 
-        }  
+              //console.log(result);
+                    if (result[j] == answerkey[i]){
+                      //console.log("Correct Answer");
+                    }
+
+            for(k=0; useranswer.length;k++){
+              //console.log(answerkey[k].value);
+              console.log(useranswer[k].value);
+              if (answerkey[k].value==useranswer[k].value)
+                score++;
+            }      
+           
+             
+            
+            console.log("Total:"+score); 
+        }
+  
   //Store the total number of questions
 var totalQuestions = $('.questions').size();
 
@@ -123,6 +166,23 @@ $questions.hide();
 //Show the first question
 $($questions.get(currentQuestion)).fadeIn();
 
+/* function displayRadioValue() { 
+            var score = 0
+            var ele = $($questions.get(currentQuestion)).getElementsByName('optradio');
+            var answer =ele[4].value;
+            for(j = 0; j < (ele.length); j++) { 
+                            
+                            if(ele[j].checked) {
+                            
+                              if (ele[j].value == answer){
+                                console.log("Correct Answer");
+                                score++
+                              }
+
+                            } 
+
+                        }
+} */
 //attach a click listener to the HTML element with the id of 'next'
 $('#next').click(function () {
 
