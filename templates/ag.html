@@ -32,29 +32,29 @@
     {% for question in mcquestions %}
     <div class="questions">
     <form method='POST' >
+
       <h3>
-          <li>{{question.question_name}}</li>
-        
+          <li>{{question.question_name}}</li> 
       </h3>
-      <input type = hidden name="question_id"value ={{question.pk}}> 
+
       <div class="radio">
         <label >
-          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer1}}' required>{{question.answer1}}
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer1}}' required>{{question.answer1}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer2}}' required>{{question.answer2}}
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer2}}' required>{{question.answer2}}
         </label>
       </div>
       <div class="radio">
         <label >
-          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer3}}' required>{{question.answer3}}
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer3}}' required>{{question.answer3}}
         </label>
       </div>
       <div class="radio">
         <label>
-          <input class="option" type="radio" name={{forloop.counter0}} value='{{question.answer4}}' required>{{question.answer4}}
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer4}}' required>{{question.answer4}}
         </label>
       </div>
       <div>
@@ -102,13 +102,11 @@
 </div>
 
 </body>
-<script type="text/javascript" >
-var name="{{ forloop.counter }}";
+<script >
 var result =[];
+
 function displayRadioValue() { 
-            var score = 0
-
-
+            var score = 0;
             var ele = document.getElementsByClassName('option');
             var answerkey = document.getElementsByClassName('answer');
             
@@ -121,33 +119,34 @@ function displayRadioValue() {
 
               for(j = 0; j < (ele.length); j++) { 
                 
-                  if(ele[j].checked){
+                  if((ele[j].checked) && !result.includes(ele[j].value)){
                     result.push(ele[j].value);
                     
                   }
                   
                  
               }
-              //console.log(result);
+              console.log(result);
 
-            var useranswer = result.slice(Math.max(result.length -answerkey.length,1));
+            //var useranswer = result.slice(Math.max(result.length -answerkey.length,1));
             //console.log(useranswer);
               
               //console.log(result);
-                    if (result[j] == answerkey[i]){
+                   // if (result[j] == answerkey[i]){
                       //console.log("Correct Answer");
-                    }
+                   // }
 
-            for(k=0; useranswer.length;k++){
-              //console.log(answerkey[k].value);
-              console.log(useranswer[k].value);
-              if (answerkey[k].value==useranswer[k].value)
+            for(k=0; k<(answerkey.length); k++){
+              console.log(answerkey[k].value);
+              console.log(result[k]);
+              if ((answerkey[k].value)==result[k])
                 score++;
+                console.log("Total:"+score); 
             }      
            
              
             
-            console.log("Total:"+score); 
+            
         }
   
   //Store the total number of questions
