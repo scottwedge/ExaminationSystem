@@ -103,15 +103,17 @@
 
 </body>
 <script >
-var result =[];
 
+var score = 0;
+var answerkey = [];
 function displayRadioValue() { 
-            var score = 0;
+            score = 0;
             var ele = document.getElementsByClassName('option');
-            var answerkey = document.getElementsByClassName('answer');
-            
+            answerkey = document.getElementsByClassName('answer');
+            var result =[];
+
             for (i=0;i<(answerkey.length);i++){
-              console.log(answerkey[i].value);
+            //  console.log(answerkey[i].value);
             }
             
            
@@ -124,7 +126,7 @@ function displayRadioValue() {
                     
                   }
                   
-                 
+             
               }
               console.log(result);
 
@@ -137,8 +139,8 @@ function displayRadioValue() {
                    // }
 
             for(k=0; k<(answerkey.length); k++){
-              console.log(answerkey[k].value);
-              console.log(result[k]);
+              //console.log(answerkey[k].value);
+              //console.log(result[k]);
               if ((answerkey[k].value)==result[k])
                 score++;
                 console.log("Total:"+score); 
@@ -164,6 +166,8 @@ $questions.hide();
 
 //Show the first question
 $($questions.get(currentQuestion)).fadeIn();
+
+
 
 /* function displayRadioValue() { 
             var score = 0
@@ -197,10 +201,10 @@ $('#next').click(function () {
         //if there are no more questions do stuff
         if (currentQuestion == totalQuestions) {
 
-            var result = sum_values()
-
+           // var result = sum_values()
+           
             //do stuff with the result
-            alert(result);
+            alert("Congratulations, you got "+score+" out of " + answerkey.length + " correct!");
 
         } else {
 
