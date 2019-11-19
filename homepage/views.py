@@ -10,7 +10,7 @@ from django.utils import timezone
 #from .forms import addTest, testUpdate
 #from .models import tests
 from examination.models import CourseCourse, exam, MultipleChoice
-from examination.forms import examInput
+from examination.forms import CreateExamForm, CreateQuestionForm
 from course.forms import CourseCreationForm, AddExamToCourseForm
 import logging
 logger = logging.getLogger(__name__)
@@ -155,3 +155,43 @@ def apply_exam_view(request, course_id, *args, **kwargs):
         return render(request,"course_apply_exam.html",context)
     else:
         return redirect('/')        
+
+@login_required
+def add_exam_view(request, *args, **kwargs):
+    logger.info('Create exam accessed')
+    
+    if request.user.profile.role == 'T':
+        if request.method == 'POST':
+            add_form = CreateExamForm(request.POST)
+
+            if add_form.is_valid:
+                add_form.save()
+            return redirect('/add_exam_question')
+        else:  
+            add_form = CreateExamForm()
+    
+        context = {'add_form' : add_form }
+        
+        return render(request,"add_exam.html",context)
+    else:
+        return redirect('/')           
+
+@login_required
+def add_exam_question_view(request, *args, **kwargs):
+    logger.info('Create exam accessed')
+    
+    if request.user.profile.role == 'T':
+        if request.method == 'POST':
+            add_form = CreateQuestionForm(request.POST)
+
+            if add_form.is_valid:
+                add_form.save()
+            return redirect('/add_exam_question')
+        else:  
+            add_form = CreateQuestionForm()
+    
+        context = {'add_form' : add_form }
+        
+        return render(request,"add_exam_question.html",context)
+    else:
+        return redirect('/')  

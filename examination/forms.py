@@ -86,3 +86,8 @@ class CreateQuestionForm(forms.ModelForm):
 	class Meta:
 		model = MultipleChoice
 		fields = ['exam_name','question_name', 'answer1','answer2','answer3', 'answer4', 'correct_answer']
+
+class CreateExamForm(forms.ModelForm):
+	class Meta:
+		model = exam
+		fields = ['title']

@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.class 
 class exam(models.Model):
-	#questions = models.ManyToManyField(MultipleChoice)
-    title = models.CharField(max_length=200, null=True, blank=True)
+    title = models.CharField(max_length=200)
     class Meta:
         managed = True
         db_table = 'exam'
@@ -13,7 +12,6 @@ class exam(models.Model):
 	    return f'{self.title}'
 
 class MultipleChoice(models.Model):
-    #mc_id = models.IntegerField(primary_key=True)
     exam_name = models.ForeignKey('exam', on_delete=models.CASCADE)
     question_name = models.TextField(blank=True, null=True)
     answer1 = models.TextField(blank=True, null=True)
@@ -21,7 +19,6 @@ class MultipleChoice(models.Model):
     answer3 = models.TextField(blank=True, null=True)
     answer4 = models.TextField(blank=True, null=True)
     correct_answer = models.TextField(blank=True, null=True)
-    #question_type_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -117,12 +114,4 @@ class QuestionType(models.Model):
 
 
 """
-# Unable to inspect table 'student_answers'
-# The error was: permission denied for relation student_answers
-
-# Unable to inspect table 'students'
-# The error was: permission denied for relation students
-
-# Unable to inspect table 'teachers'
-# The error was: permission denied for relation teachers
 
