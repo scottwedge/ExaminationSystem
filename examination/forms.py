@@ -73,13 +73,21 @@ class examUpdate(forms.ModelForm):
 		model = exam
 		fields = ('title','question','option1','option2','option3','option4','correct')
 
-#CHOICES = ['answer1','answer2','answer3','answer4']
-class examInput(forms.ModelForm):
-	widget = forms.RadioSelect(choices=['one','two','answer3','answer4'])
-	big = forms.CharField(label='bbbb')
+class examInput:
+	class Meta:
+		fields = ()
+
+class CreateExamForm(forms.ModelForm):
+	class Meta:
+		model = exam 
+		fields = ['title',]
+
+class CreateQuestionForm(forms.ModelForm):
 	class Meta:
 		model = MultipleChoice
-		fields = ('answer1','answer2','answer3','answer4')
+		fields = ['exam_name','question_name', 'answer1','answer2','answer3', 'answer4', 'correct_answer']
 
-
-
+class CreateExamForm(forms.ModelForm):
+	class Meta:
+		model = exam
+		fields = ['title']

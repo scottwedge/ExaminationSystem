@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
 from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view 
-from homepage.views import course_exams_view, course_grades_view 
+from homepage.views import course_exams_view, course_grades_view, add_course_view, apply_exam_view, add_exam_view, add_exam_question_view
 from login.views import login_view, register_view
 from examination.views import add_exam, edit_exam, exam_detail
 from django.conf import settings
@@ -44,9 +44,12 @@ urlpatterns = [
     #Course Specific Views
     path('course_exams/<course_id>/',course_exams_view),
     path('course_grades/<course_id>/',course_grades_view),
+    path('add_course/', add_course_view),
+    path('apply_exam/<course_id>/', apply_exam_view),
 
-    #Test Views
-    path('add_exam/', add_exam),
+    #Exam Views
+    path('add_exam/', add_exam_view),
+    path('add_exam_question', add_exam_question_view ),
     path('exam<int:pk>/edit/', edit_exam, name='edit_exam'),
     path('exam_detail/', exam_detail ),
 
