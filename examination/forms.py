@@ -1,5 +1,5 @@
 from django import forms
-from .models import exam
+from .models import exam, MultipleChoice
 
 
 class addExam(forms.ModelForm):
@@ -72,3 +72,22 @@ class examUpdate(forms.ModelForm):
 	class Meta:
 		model = exam
 		fields = ('title','question','option1','option2','option3','option4','correct')
+
+class examInput:
+	class Meta:
+		fields = ()
+
+class CreateExamForm(forms.ModelForm):
+	class Meta:
+		model = exam 
+		fields = ['title',]
+
+class CreateQuestionForm(forms.ModelForm):
+	class Meta:
+		model = MultipleChoice
+		fields = ['exam_name','question_name', 'answer1','answer2','answer3', 'answer4', 'correct_answer']
+
+class CreateExamForm(forms.ModelForm):
+	class Meta:
+		model = exam
+		fields = ['title']

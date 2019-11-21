@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+{% for course in courses%}
+    <p>Take a test for <b>{{course}} !</b></p>
+    {%for exam_name in course.course_exam.all%}
+    <div class="list-group ">    
+    <a href="/ag/{{exam_name.id}}" class="list-group-item list-group-item-action"> <p> {{exam_name}}</p></a>
+    </div>
+
+
+    {%endfor%}
+{%endfor%}
+
+
+
+
+{%endblock%}

@@ -1,95 +1,85 @@
 {% extends 'base.html' %}
 {%block content%}
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>MDM Test</title>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
+
+<script>
+
+</script>
 <body>
-
-<div class="container">
-  <h2>Modern Database Management: Test 1</h2>
-  <p>This is an individual test assignmnet. All work must be your own.</p>
-  <hr />
-  <form>
-    <h3>1. One application of data warehouses is:</h3>
-    <div class="radio">
-      <label >
-        <input type="radio" name="optradio" >shipping of information
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">order processing
-      </label>
-    </div>
-    <div class="radio">
-      <label >
-        <input type="radio" name="optradio">decision support
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">file updating
-      </label>
-    </div>
-  </form>
-  <form>
-    <h3>2. Older systems that often contain data of poor quality are called ________ systems.</h3>
-    <div class="radio">
-      <label >
-        <input type="radio" name="optradio" >controlled
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">legacy
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">database
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">mainframe
-      </label>
-    </div>
-  </form>
-  <form>
-    <h3>3. A database is an organized collection of ________ related data.</h3>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio" >logically
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">physically
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">loosely
-      </label>
-    </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="optradio">badly
-      </label>
-    </div>
-  </form>
-  <hr />
-  <a class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal"> Submit</a>
-
   
-  <!--Modal for Submit button -->
+  <div class="container">
+    <h2>{{mcquestions.first.exam_name}}</h2>
+    <p>This is an individual test assignmnet. All work must be your own.</p>
+    <hr />
+   
+    
+
+    {% for question in mcquestions %}
+    <div class="questions">
+    <form method='POST' >
+
+      <h3>
+          <li>{{question.question_name}}</li> 
+      </h3>
+
+      <div class="radio">
+        <label >
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer1}}' required>{{question.answer1}}
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer2}}' required>{{question.answer2}}
+        </label>
+      </div>
+      <div class="radio">
+        <label >
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer3}}' required>{{question.answer3}}
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input class="option" type="radio" name='{{forloop.counter0}}' value='{{question.answer4}}' required>{{question.answer4}}
+        </label>
+      </div>
+      <div>
+        <label>
+            <input class="answer" type="hidden" name='{{forloop.counter0}}' id="myVar" value='{{question.correct_answer}}'>
+        </label>
+      </div>
+      
+      <!--validate this... if ( value:selected == {{question.correct_answer}} ) then increment score-->
+     
+   
+    </form>
+  </div>
+
+
+  <div id="result">
+
+  </div>
+  {%endfor%}
+  
+
+  <a class="btn btn-lg btn-success" id='next' onclick="displayRadioValue()"> Next</a>
+ 
+
+  <!--not in use for now-->
   <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -100,17 +90,132 @@
       
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Continue Test</button>
-            <button type="button" class="btn btn-primary">Submit Test</button>
+            <button type="sumbit" class="btn btn-primary" data-toggle="modal"data-target="#successMessage">Submit Test</button>
           </div>
         </div>
       </div>
     </div>
+
+    
   
 
 </div>
 
-
-
 </body>
+<script >
+
+var score = 0;
+var answerkey = [];
+function displayRadioValue() { 
+            score = 0;
+            var ele = document.getElementsByClassName('option');
+            answerkey = document.getElementsByClassName('answer');
+            var result =[];
+
+            for (i=0;i<(answerkey.length);i++){
+            //  console.log(answerkey[i].value);
+            }
+            
+           
+    
+
+              for(j = 0; j < (ele.length); j++) { 
+                
+                  if((ele[j].checked) && !result.includes(ele[j].value)){
+                    result.push(ele[j].value);
+                    
+                  }
+                  
+             
+              }
+              console.log(result);
+
+            //var useranswer = result.slice(Math.max(result.length -answerkey.length,1));
+            //console.log(useranswer);
+              
+              //console.log(result);
+                   // if (result[j] == answerkey[i]){
+                      //console.log("Correct Answer");
+                   // }
+
+            for(k=0; k<(answerkey.length); k++){
+              //console.log(answerkey[k].value);
+              //console.log(result[k]);
+              if ((answerkey[k].value)==result[k])
+                score++;
+                console.log("Total:"+score); 
+            }      
+           
+             
+            
+            
+        }
+  
+  //Store the total number of questions
+var totalQuestions = $('.questions').size();
+
+//Set the current question to display to 1
+var currentQuestion = 0;
+
+//Store the selector in a variable.
+//It is good practice to prefix jQuery selector variables with a $
+$questions = $('.questions');
+
+//Hide all the questions
+$questions.hide();
+
+//Show the first question
+$($questions.get(currentQuestion)).fadeIn();
+
+
+
+/* function displayRadioValue() { 
+            var score = 0
+            var ele = $($questions.get(currentQuestion)).getElementsByName('optradio');
+            var answer =ele[4].value;
+            for(j = 0; j < (ele.length); j++) { 
+                            
+                            if(ele[j].checked) {
+                            
+                              if (ele[j].value == answer){
+                                console.log("Correct Answer");
+                                score++
+                              }
+
+                            } 
+
+                        }
+} */
+//attach a click listener to the HTML element with the id of 'next'
+$('#next').click(function () {
+
+     //fade out the current question,
+     //putting a function inside of fadeOut calls that function 
+     //immediately after fadeOut is completed, 
+     //this is for a smoother transition animation
+     $($questions.get(currentQuestion)).fadeOut(function () {
+
+        //increment the current question by one
+        currentQuestion = currentQuestion + 1;
+
+        //if there are no more questions do stuff
+        if (currentQuestion == totalQuestions) {
+
+           // var result = sum_values()
+           
+            //do stuff with the result
+            alert("Congratulations, you got "+score+" out of " + answerkey.length + " correct!");
+
+        } else {
+
+            //otherwise show the next question
+            $($questions.get(currentQuestion)).fadeIn();
+
+        }
+    });
+
+});
+  
+  </script>
 </html>
 {%endblock%}

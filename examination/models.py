@@ -3,25 +3,52 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.class 
+class exam(models.Model):
+    title = models.CharField(max_length=200)
+    class Meta:
+        managed = True
+        db_table = 'exam'
+    def __str__(self):
+	    return f'{self.title}'
+
+class MultipleChoice(models.Model):
+    exam_name = models.ForeignKey('exam', on_delete=models.CASCADE)
+    question_name = models.TextField(blank=True, null=True)
+    answer1 = models.TextField(blank=True, null=True)
+    answer2 = models.TextField(blank=True, null=True)
+    answer3 = models.TextField(blank=True, null=True)
+    answer4 = models.TextField(blank=True, null=True)
+    correct_answer = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = True
+        db_table = 'multiple_choice'
+    def __str__(self):
+	    return f'{self.question_name}'
+
+
+
 class CourseCourse(models.Model):
     course_name = models.CharField(max_length=50)
     teacher = models.ForeignKey(User, on_delete=models.CASCADE)
     student = models.ManyToManyField(User,related_name='+')
-    
+    course_exam = models.ManyToManyField('exam', blank=True)
+    class Meta:
+        managed = True
+        db_table = 'my_course'
     def __str__(self):
         return f'{self.course_name}'
 
-class exam(models.Model):
-	title = models.CharField(max_length=200)
-	question = models.CharField(max_length=200)
-	option1 = models.CharField(max_length=100)
-	option2 = models.CharField(max_length=100)
-	option3 = models.CharField(max_length=100)
-	option4 = models.CharField(max_length=100)
-	correct = models.CharField(max_length=100)
-	def __str__(self):
-		return f'{self.title} exam'
-        
+class ExamGrade(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    exam = models.ForeignKey('exam', on_delete=models.CASCADE)
+    grade = models.IntegerField(default=0)
+    class Meta:
+        managed = True
+        db_table = 'exam_grade'
+    def __str__(self):
+        return f'{self.exam} grade for {self.student}'
+
 """ class Exam(models.Model):
     exam_id = models.IntegerField(primary_key=True)
     exam_name = models.TextField(blank=True, null=True)
@@ -34,7 +61,7 @@ class exam(models.Model):
     class Meta:
         managed = False
         db_table = 'exam'
- """
+
 
 class ExamQuestion(models.Model):
     exam_question_id = models.IntegerField(primary_key=True)
@@ -74,19 +101,7 @@ class ExaminationQuestion(models.Model):
         db_table = 'examination_question'
 
 
-class MultipleChoice(models.Model):
-    mc_id = models.IntegerField(primary_key=True)
-    mc_name = models.TextField(blank=True, null=True)
-    answer1 = models.TextField(blank=True, null=True)
-    answer2 = models.TextField(blank=True, null=True)
-    answer3 = models.TextField(blank=True, null=True)
-    answer4 = models.TextField(blank=True, null=True)
-    correct_answer = models.TextField(blank=True, null=True)
-    question_type_id = models.IntegerField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'multiple_choice'
 
 
 class QuestionType(models.Model):
@@ -96,12 +111,7 @@ class QuestionType(models.Model):
     class Meta:
         managed = False
         db_table = 'question_type'
-# Unable to inspect table 'student_answers'
-# The error was: permission denied for relation student_answers
 
-# Unable to inspect table 'students'
-# The error was: permission denied for relation students
 
-# Unable to inspect table 'teachers'
-# The error was: permission denied for relation teachers
+"""
 

@@ -4,40 +4,7 @@
 
 {% block content %}
 
-<script>
-	def create_connection(users):
-	    conn = None
-	    try:
-	        conn = sqlite3.connect(users)
-	    except Error as e:
-	        print(e)
-	 
-	    return conn
 
-
-	 def select_all_tasks(conn):
-	    cur = conn.cursor()
-	    cur.execute("SELECT asthasharma FROM users")
-	 
-	    rows = cur.fetchall()
-	 
-	    for row in rows:
-	        print(row)
-
-
-
-	def main():
-	    database = os.path.join(BASE_DIR, 'db.sqlite3')
-	 
-	    # create a database connection
-	    conn = create_connection(database)
-	    
- 
- 
-	if __name__ == '__main__':
-    	main()
-
-</script>
 <style>
 	.digit{
 	text-align: center;
@@ -48,22 +15,18 @@
 	<thead>
 		<tr class="success">
 			<td >Courses</td>
-			 <td class="digit">Obtained Grades</td>
+			<td class="digit">Grade Average</td>
 		</tr>
 	</thead>
 	<tbody class="" >
-		<tr>
-			<td>Agile Software Engineering</td>
-			  <td class="digit">94.64</td>
-		</tr>
-		<tr>
-			<td>Machine Learning II</td>
-			  <td class="digit">90.25</td>
-		</tr>
-		<tr>
-			<td>Introduction to Computers</td>
-			  <td class="digit">100.00</td>
-		</tr>
+		
+			{% for course in studentCourses %}
+				<tr>
+					<td><a href="/course_grades/{{course.id}}/">{{course.course_name}}</a></td>
+				  	<td class="digit">94.64</td>
+				</tr>
+			{%endfor%}	  
+		
 	</tbody>
 </table>
 </div>

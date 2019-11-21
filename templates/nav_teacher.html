@@ -1,5 +1,5 @@
 <h3 style="color:#349200"> Hello, Prof. {{ request.user }}! </h3>
-<p align="right"><button class="btn" onclick="">Log Out</button></p>
+<p align="right"><a class ="ml-2" href="{% url 'logout' %}"> Log Out </a></p>
 
 <nav class="navbar navbar-default">
   <div id = "navigation">
@@ -8,8 +8,9 @@
         <a class="navbar-brand" href="#">Academic Examination System</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="bt"><a href="#">My Courses</a></li>
-        <li class="bt"><a href="#"> Add a Course</a></li>
+        <li class="bt"><a href="/homepage/">My Courses</a></li>
+        <li class="bt"><a href="/add_course/"> Add a Course</a></li>
+        <li class="bt"><a href="/add_exam/"> Create an Exam</a></li>
         <li  class="bt"><a href="#">Grading</a></li>
 
       </ul>
