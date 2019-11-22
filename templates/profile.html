@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 
@@ -55,33 +55,46 @@
 		}
 
 		span.badge{
-			background-color: black;
+			background-color: #349200;
 			position: relative;
-			left: 100px;
-			top: 10px;
+			left: 10px;
+			
 		}
+		
 
 		
 	</style>
 	
 	
-		<div class="card">
-			<img class="card-img-top" src={{user.profile.image.url}}> <!--@ profile_pics/pic.jpg-->
-			<div class="card-body">
-				<span class="badge">{{user.profile.role}}</span>
-			  <h3 class="card-title">{{user.username}}</h3>
-			  <p> Name : {{user.first_name}} {{user.last_name}}  </p>
-
-			  <p> Country : {{user.profile.country}} </p>
-			  <p> State : {{user.profile.state}} </p>
-			  <p> City/Town : {{user.profile.city}} </p>
-			  <p> Last Login : {{user.last_login}} </p>
-			  <p> Date Account Created : {{user.date_joined}} </p>
-			  <h5>{{user.email}} </h5>
-			  <h5>{{user.profile.bio}}</h5>
-
-			  <a class ="ml-2" href="{% url 'changeprofile' %}"> Update Profile </a>
+		<div class='row'>
+		<div class="col-sm-3">
+			<img class="img-thumbnail rounded" src={{user.profile.image.url}}> <!--@ profile_pics/pic.jpg-->
+		</div>
+		<div class="col-sm-9">
+			<h3 class="text-muted">{{user.profile.bio}}</h3>	
+		</div>
+		</div>
+		
+				
+			<hr />	
+		<p><b>Role: </b>  <span class="badge">{{user.profile.role}}</span></p>
+		
+			 
+			<div class="row">
+			<p class="col-sm-6"> <b>Name :</b> {{user.first_name}} {{user.last_name}}  </p>
+			  <p class="col-sm-6"> <b>Email: </b>{{user.email}} </p>
 			</div>
-		  </div>
+			<div class="row">
+			  <p class="col-sm-6"><b> State : </b>{{user.profile.state}} </p>
+			  <p class="col-sm-6"> <b>City/Town :</b> {{user.profile.city}} </p>
+			</div> 
+			  <p> <b>Last Login : </b>{{user.last_login}} </p>
+			  <p> <b>Date Account Created :</b> {{user.date_joined}} </p>
+			  
+			  
+
+			  <a class="btn btn-default" href="{% url 'changeprofile' %}"> Update Profile </a>
+			</div>
+		  
 
 {% endblock %}
