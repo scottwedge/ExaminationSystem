@@ -1,37 +1,51 @@
 
 {% extends 'teacher_base.html' %}
-
 {% load static %}
 
 
 {% block content %}
+<style>
+.caption{
+   display: block;
+   width: 200px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}
+
+</style>
 
 
-<div class="container">
 
 
-   {% for course in teacherCourses %}
+
   <div class = "row">
+      {% for course in teacherCourses %}
          <div class = "col-sm-8 col-md-4">
-          <div class = "thumbnail">
-               <img src = "https://images.pexels.com/photos/34592/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt = "Course 6522">
+            
+            
+            <div class = "thumbnail">
+               <img src = "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg" alt = "Course 6522">
             </div>
             <div>
                <h3 class = "caption">{{course.course_name}}</h3>
 
-                  <a href = "../apply_exam/{{course.id}}/" class = "btn btn-primary" role = "button"data-toggle="modal" >
+                  <a href = "../apply_exam/{{course.id}}/" class = "btn btn-primary" role = "button">
                      Add Exam
                   </a> 
-                  <a href = "" class = "btn btn-default" role = "button">
+                  <a href = "#" class = "btn btn-default" role = "button">
                      Update Exam
                   </a>
                  
                
             </div>
+            
         </div>
-
         {% endfor %}
-</div>
+      </div>
+
+        
+
 
 </script>
 

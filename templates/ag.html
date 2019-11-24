@@ -27,8 +27,6 @@
     <p>This is an individual test assignmnet. All work must be your own.</p>
     <hr />
    
-    
-
     {% for question in mcquestions %}
     <div class="questions">
     <form method='POST' >
@@ -206,6 +204,8 @@ $('#next').click(function () {
             //do stuff with the result
             alert("Congratulations, you got "+score+" out of " + answerkey.length + " correct!");
 
+            ////********* CHANGE THIS ******////////
+            window.location.replace("http://127.0.0.1:8000/homepage/"); 
         } else {
 
             //otherwise show the next question

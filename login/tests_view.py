@@ -7,6 +7,7 @@ from .forms import UserRegisterForm, UserUpdateForm
 from user.forms import ProfileUpdateForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.urls import reverse
 
 class AllTasksViewTest(TestCase):
 
@@ -21,9 +22,12 @@ class AllTasksViewTest(TestCase):
     def tearDown(self):
         self.user.delete()
 
-    def test_login_view(self):
-        #self.AssertTrue(self, "login.html", {})
-         self.assertIsNotNone(self.client.login)
+   # def test_login_view(self):
+   #     url = reverse('login')
+   #     response = self.client.get(url)
+   #     self.assertEqual(response.status_code, 200)
+   #     self.assertTemplateUsed(response, 'login.html')
+   #     self.assertIsNotNone(self.client.login)
 
     def testregister_view(self):
        

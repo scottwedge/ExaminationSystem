@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     
     #Our Apps
     'login',
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     'hooks',
     #!!!MANUALLY EDIT ON GIT
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

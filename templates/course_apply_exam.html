@@ -1,5 +1,5 @@
 {% extends 'teacher_base.html' %}
-
+{% load crispy_forms_tags %}
 {% load static %}
 {% block content %}
 
@@ -7,7 +7,7 @@
             {%csrf_token%}
             <fieldset class="form-group">
                 <legend class="border-bottom mb 4">Add exams to your course!</legend>
-				{{add_form.as_p}}
+				{{add_form|crispy}}
             </fieldset>
             <div class="form-group">
                 <button class = "btn btn-success" type="submit"> Update</button>

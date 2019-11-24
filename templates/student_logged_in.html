@@ -2,10 +2,19 @@
 {% load static %}
 
 {% block content %}
-
+<style>
+      .caption{
+         display: block;
+         width: 200px;
+         overflow: hidden;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+      }
+      
+</style>
 
 <!--<link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
-<div class="container">
+
       <div class = "row">
             
       {% for course in studentCourses %}

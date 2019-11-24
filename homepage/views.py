@@ -12,6 +12,8 @@ from django.utils import timezone
 from examination.models import CourseCourse, exam, MultipleChoice
 from examination.forms import CreateExamForm, CreateQuestionForm
 from course.forms import CourseCreationForm, AddExamToCourseForm
+from django.contrib.auth.models import User
+
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -85,10 +87,11 @@ def grades_view(request, *args, **kwargs):
 def agile_test(request, exam_id, *args, **kwargs):
     studentCourses = CourseCourse.objects.filter(student=request.user) 
     mcquestions = MultipleChoice.objects.filter(exam_name=exam_id)
+    user = User.objects.get(username=request.user)
     context = {
         'studentCourses' : studentCourses,
         'mcquestions' : mcquestions,
-        
+        'user':user,
     }
 
     return render(request, "ag.html", context)
