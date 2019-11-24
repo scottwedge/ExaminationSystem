@@ -195,3 +195,25 @@ def add_exam_question_view(request, *args, **kwargs):
         return render(request,"add_exam_question.html",context)
     else:
         return redirect('/')  
+
+@login_required
+def teacher_grading_course_view(request, *args, **kwargs):
+    logger.info('Teacher Course Grading accessed')
+    
+    if request.user.profile.role == 'T':
+                
+        return render(request,"teacher_grading_course.html",context)
+    else:
+        return redirect('/')
+
+
+@login_required
+def teacher_grading_student_view(request, *args, **kwargs):
+    logger.info('Teacher Student Grading accessed')
+    
+    if request.user.profile.role == 'T':
+        
+        
+        return render(request,"student_grading_course.html",context)
+    else:
+        return redirect('/')        
