@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView 
 from homepage.views import student_view, logout_view, profile_view, grades_view, agile_test, changeprofile_view 
 from homepage.views import course_exams_view, course_grades_view, add_course_view, apply_exam_view, add_exam_view, add_exam_question_view
+from homepage.views import teacher_grading_course_view, teacher_grading_exam_view, teacher_grading_student_view
 from login.views import login_view, register_view
 from examination.views import add_exam, edit_exam, exam_detail
 from django.conf import settings
@@ -38,7 +39,9 @@ urlpatterns = [
     path('profile/', profile_view),
     path('changeprofile/', changeprofile_view, name='changeprofile'),
     path('grades/', grades_view),
-    
+    path('grades_courses/', teacher_grading_course_view),
+    path('grades_exams/<course_id>/', teacher_grading_exam_view),
+    path('grades_students/<course_id>/<exam_id>/', teacher_grading_student_view),
     path('ag/<exam_id>', agile_test),
 
     #Course Specific Views

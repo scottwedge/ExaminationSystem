@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'teacher_base.html' %}
 {% load static %}
 
 {% block content %}
@@ -13,20 +13,19 @@
 	<thead>
 		<tr class="success">
 			<td >Exam</td>
-			<td class="digit">Grade Average</td>
+			<td class="digit">Class Average</td>
 		</tr>
 	</thead>
 	<tbody class="" >
-		
-{% for course in courses%}
-<p>View grades for <b>{{course}} </b>exams.</p>
-    {%for exam_name in course.course_exam.all%}
+        <p>View grades for {{selectedCourse}}.</p>		
+{% for exam in selectedCourse.course_exam.all%}
+
+    
     <tr>
-        <td>{{exam_name}}</td>
+        <td><a href="/grades_students/{{selectedCourse.id}}/{{exam.id}}/">{{exam}}</a></td>
           <td class="digit">94.64</td>
     </tr>
 
-    {%endfor%}
 {%endfor%}
 
 </tbody>

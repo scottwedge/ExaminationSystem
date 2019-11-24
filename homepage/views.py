@@ -202,21 +202,39 @@ def add_exam_question_view(request, *args, **kwargs):
 @login_required
 def teacher_grading_course_view(request, *args, **kwargs):
     logger.info('Teacher Course Grading accessed')
-    
     if request.user.profile.role == 'T':
-                
+        teacherCourses = CourseCourse.objects.filter(teacher=request.user)
+        context = {
+            'teacherCourses' : teacherCourses
+        }
         return render(request,"teacher_grading_course.html",context)
     else:
         return redirect('/')
 
-
 @login_required
-def teacher_grading_student_view(request, *args, **kwargs):
-    logger.info('Teacher Student Grading accessed')
-    
+def teacher_grading_exam_view(request, course_id, *args, **kwargs):
+    logger.info('Teacher Exam Grading accessed')
     if request.user.profile.role == 'T':
-        
-        
-        return render(request,"student_grading_course.html",context)
+        selectedCourse = CourseCourse.objects.get(id=course_id)
+        context = {
+            'selectedCourse' : selectedCourse
+        }
+
+        return render(request,"teacher_grading_exam.html",context)
     else:
         return redirect('/')        
+
+@login_required
+def teacher_grading_student_view(request, course_id, exam_id, *args, **kwargs):
+    logger.info('Teacher Student Grading accessed')
+    if request.user.profile.role == 'T':
+        selectedCourse = CourseCourse.objects.get(id=course_id)
+        selectedExam = exam.objects.get(id=exam_id)
+        context = {
+            'selectedCourse' : selectedCourse,
+            'selectedExam' : selectedExam
+        }
+
+        return render(request,"teacher_grading_student.html",context)
+    else:
+        return redirect('/') 

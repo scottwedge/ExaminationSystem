@@ -1,0 +1,28 @@
+{% extends 'teacher_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<style>
+	.digit{
+	text-align: center;
+}
+</style>
+<div class ="table-responsive">
+    <legend class="">Select a course to view student grades!</legend>
+	<tbody class="" >
+		
+			{% for course in teacherCourses %}
+            <div class="list-group ">    
+                <a href="/grades_exams/{{course.id}}/" class="list-group-item list-group-item-action"> <p> {{course.course_name}}</p></a>
+            </div>
+			{%endfor%}	  
+		
+	</tbody>
+</table>
+</div>
+
+
+{% endblock %}
