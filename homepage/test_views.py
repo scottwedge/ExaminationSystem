@@ -16,7 +16,7 @@ from django.urls import reverse
 def teststudent_view(self):
 	
     self.assertTrue(self.user.profile.role == 'S')
-    self.asertFalse(self.user.profile.role == 'T')
+    self.assertFalse(self.user.profile.role == 'T')
   
 
 def logout_view(self):
@@ -34,7 +34,7 @@ def testchangeprofile_view(self):
 @login_required
 def testprofile_view(self):
     self.assertTrue(self.user.profile.role == 'S')
-    self.asertFalse(self.user.profile.role == 'T')
+    self.assertFalse(self.user.profile.role == 'T')
     url = reverse('profile')
     response = self.client.get(url)
     self.assertEqual(response.status_code, 200)
